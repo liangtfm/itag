@@ -16,14 +16,16 @@
   <input
      id="user_username"
      name="user[username]"
-     type="text">
+     type="text"
+     value="<%= @user.username %>">
   <br>
 
   <label for="user_email">Email</label>
   <input
      id="user_email"
      name="user[email]"
-     type="text">
+     type="text"
+     value="<%= @user.email %>">
   <br>
 
   <label for="user_password">Password</label>
@@ -31,6 +33,53 @@
      id="user_password"
      name="user[password]"
      type="password">
+  <br>
+
+  <label for="user_bio">Biography</label>
+<textarea rows="4"
+          cols="50"
+          id="user_bio"
+          name="user[biography]"><%= @user.biography %></textarea>
+  <br>
+
+  <label for="user_location">Location</label>
+  <input
+     id="user_location"
+     name="user[location]"
+     type="text"
+     value="<%= @user.location %>">
+  <br>
+
+  <label for="user_age">Age</label>
+  <input
+     id="user_age"
+     name="user[age]"
+     type="text"
+     value="<%= @user.age %>">
+  <br>
+
+  <label for="user_gender">Gender</label>
+  <input
+     id="user_gender"
+     name="user[gender]"
+     type="radio"
+     value="M" <%= "checked" if @user.gender == "M" %> >M</option>
+   <input
+      id="user_gender"
+      name="user[gender]"
+      type="radio"
+      value="F">F</option>
+  <br>
+
+  <label for="user_ethnicity">Race</label>
+  <select id="user_ethnicity" name="user[ethnicity]">
+    <option value="white" <%= "selected" if @user.ethnicity == "white" %>>White</option>
+    <option value="black" <%= "selected" if @user.ethnicity == "black" %>>Black</option>
+    <option value="native"<%= "selected" if @user.ethnicity == "native" %>>Native American</option>
+    <option value="asian" <%= "selected" if @user.ethnicity == "asian" %>>Asian/Pacific Islander</option>
+    <option value="hispanic" <%= "selected" if @user.ethnicity == "hispanic" %>>Hispanic</option>
+    <option value="other" <%= "selected" if @user.ethnicity == "other" %>>Other</option>
+  </select>
   <br>
 
   <input type="submit" value="<%= message %>">

@@ -1,3 +1,25 @@
 <h1><%= @user.username %></h1>
+<%= link_to "Edit Profile", edit_user_url(@user) %>
 
-<p>Hello, dear user!</p>
+<ul>
+  <% if @user.location %>
+    <li> <%= @user.location %> </li>
+  <% end %>
+
+  <% if @user.age %>
+    <li> <%= @user.age %> </li>
+  <% end %>
+
+  <% if @user.gender %>
+    <li> <%= @user.gender %> </li>
+  <% end %>
+
+  <% if @user.ethnicity %>
+    <li> <%= @user.ethnicity %> </li>
+  <% end %>
+</ul>
+
+
+
+Biography:
+<p><%= @user.biography %></p>
