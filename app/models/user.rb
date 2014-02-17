@@ -1,4 +1,4 @@
-class Users < ActiveRecord::Base
+class User < ActiveRecord::Base
   attr_accessible :username, :password, :email, :biography, :age, :gender, :ethnicity, :location, :admin, :session_token
   attr_reader :password
 
