@@ -1,12 +1,16 @@
 <h1><%= @restaurant.name %></h1>
-
+<ul>
+<% @restaurant.categories.each do |category| %>
+  <li><%= category.name %></li>
+<% end %>
+</ul>
 <% if current_user.admin == true %>
   <%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>
 <% end %>
 
 <ul>
   <% unless @restaurant.website.empty? %>
-    <li> <%= @restaurant.website %> </li>
+    <li><%= link_to @restaurant.website, @restaurant.website %> </li>
   <% end %>
 
   <% unless @restaurant.phone.empty? %>

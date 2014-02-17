@@ -20,6 +20,14 @@
      value="<%= @restaurant.name %>">
   <br>
 
+  <label for="restaurant_category">What type of food is served here?</label>
+    <% Category.all.each do |category| %>
+
+      <input id="restaurant_category" name="restaurant[category_ids][]" type="checkbox" value="<%= category.id %>" <%= "checked" if @restaurant.categories.include?(category) %>><%= category.name %></option>
+
+    <% end %>
+  <br>
+
   <label for="restaurant_website">Website</label>
   <input
      id="restaurant_website"
