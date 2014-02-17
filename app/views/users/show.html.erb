@@ -1,5 +1,8 @@
 <h1><%= @user.username %></h1>
-<%= link_to "Edit Profile", edit_user_url(@user) %>
+
+<% if current_user == @user %>
+  <%= link_to "Edit Profile", edit_user_url(@user) %>
+<% end %>
 
 <ul>
   <% if @user.location %>

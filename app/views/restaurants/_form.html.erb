@@ -1,0 +1,98 @@
+<% action = (restaurant.persisted? ? restaurant_url(restaurant) : restaurants_url) %>
+<% method = (restaurant.persisted? ? "put" : "post") %>
+<% message = (restaurant.persisted? ? "Update Restaurant" : "Add Restaurant") %>
+
+<form action="<%= action %>" method="post">
+  <input
+     name="_method"
+     type="hidden"
+     value="<%= method %>">
+  <input
+     name="authenticity_token"
+     type="hidden"
+     value="<%= form_authenticity_token %>">
+
+  <label for="restaurant_name">Restaurant Name</label>
+  <input
+     id="restaurant_name"
+     name="restaurant[name]"
+     type="text"
+     value="<%= @restaurant.name %>">
+  <br>
+
+  <label for="restaurant_website">Website</label>
+  <input
+     id="restaurant_website"
+     name="restaurant[website]"
+     type="text"
+     value="<%= @restaurant.website %>">
+  <br>
+
+  <label for="restaurant_phone">Phone Number</label>
+  <input
+     id="restaurant_phone"
+     name="restaurant[phone]"
+     type="text"
+     value="<%= @restaurant.phone %>">
+  <br>
+
+  <label for="restaurant_price">Price Range</label>
+  <input
+     id="restaurant_price"
+     name="restaurant[price]"
+     type="radio"
+     value="$" <%= "checked" if @restaurant.price == "$" %> >$</option>
+  <input
+    id="restaurant_price"
+    name="restaurant[price]"
+    type="radio"
+    value="$$" <%= "checked" if @restaurant.price == "$$" %> >$$</option>
+  <input
+     id="restaurant_price"
+     name="restaurant[price]"
+     type="radio"
+     value="$$$" <%= "checked" if @restaurant.price == "$$$" %> >$$$</option>
+   <input
+      id="restaurant_price"
+      name="restaurant[price]"
+      type="radio"
+      value="$$$$" <%= "checked" if @restaurant.price == "$$$$" %> >$$$$</option>
+  <br>
+
+
+
+  <label for="restaurant_street">Street</label>
+  <input
+     id="restaurant_street"
+     name="restaurant[street]"
+     type="text"
+     value="<%= @restaurant.street %>">
+  <br>
+
+  <label for="restaurant_city">City</label>
+  <input
+     id="restaurant_city"
+     name="restaurant[city]"
+     type="text"
+     value="<%= @restaurant.city %>">
+  <br>
+
+  <label for="restaurant_state">State</label>
+  <select id="restaurant_state" name="restaurant[state]">
+    <option value="NY" <%= "selected" if @restaurant.state == "NY" %>>NY</option>
+    <option value="SF" <%= "selected" if @restaurant.state == "SF" %>>SF</option>
+    <option value="MA"<%= "selected" if @restaurant.state == "MA" %>>MA</option>
+  </select>
+  <br>
+
+  <label for="restaurant_zip">Zip Code</label>
+  <input
+     id="restaurant_zip"
+     name="restaurant[zip]"
+     type="text"
+     value="<%= @restaurant.zip %>">
+  <br>
+
+
+  <input type="submit" value="<%= message %>">
+</form>

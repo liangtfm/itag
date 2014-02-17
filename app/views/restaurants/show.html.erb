@@ -1,0 +1,24 @@
+<h1><%= @restaurant.name %></h1>
+
+<% if current_user.admin == true %>
+  <%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>
+<% end %>
+
+<ul>
+  <% unless @restaurant.website.empty? %>
+    <li> <%= @restaurant.website %> </li>
+  <% end %>
+
+  <% unless @restaurant.phone.empty? %>
+    <li> <%= @restaurant.phone %> </li>
+  <% end %>
+
+  <li> <%= @restaurant.price %> </li>
+  <li> <%= @restaurant.street %> </li>
+  <li> <%= @restaurant.city %> </li>
+  <li> <%= @restaurant.state %> </li>
+
+  <% unless @restaurant.zip.empty? %>
+    <li> <%= @restaurant.zip %> </li>
+  <% end %>
+</ul>
