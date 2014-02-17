@@ -9,6 +9,7 @@ gem 'pg'
 
 gem 'jquery-rails'
 gem 'backbone-on-rails'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 group :development do
   gem 'better_errors'
