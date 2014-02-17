@@ -11,4 +11,10 @@ class Restaurant < ActiveRecord::Base
   through: :tags,
   source: :category
 
+  has_many :reviews
+
+  has_many :reviewers,
+  through: :reviews,
+  source: :user
+
 end

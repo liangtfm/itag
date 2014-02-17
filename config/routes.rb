@@ -1,8 +1,13 @@
 Itag::Application.routes.draw do
   resources :users, :only => [:create, :new, :show, :edit, :update]
+
   resource :session, :only => [:create, :destroy, :new]
 
-  resources :restaurants
+  resources :restaurants do
+    resources :reviews, :only => [:create, :new]
+  end
+
+  resources :reviews, :only => [:index, :show, :edit, :update, :destroy]
 
   root :to => "restaurants#index"
 

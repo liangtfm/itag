@@ -1,0 +1,5 @@
+<h1><%= @review.title %></h1>
+
+<% if current_user == @user %>
+  <%= link_to "Edit Review", edit_user_review(@review) %>
+<% end %>

@@ -26,6 +26,7 @@
       <input id="restaurant_category" name="restaurant[category_ids][]" type="checkbox" value="<%= category.id %>" <%= "checked" if @restaurant.categories.include?(category) %>><%= category.name %></option>
 
     <% end %>
+    <input type="hidden" name="restaurant[category_ids][]" value="">
   <br>
 
   <label for="restaurant_website">Website</label>

@@ -8,6 +8,12 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, :allow_nil => true }
   validates :password_digest, presence: true
 
+  has_many :reviews
+
+  has_many :rated_restaurants,
+  through: :reviews,
+  source: :restaurant
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     user.try(:is_password?, password) ? user : nil

@@ -1,0 +1,41 @@
+<% action = (review.persisted? ? review_url(review) : restaurant_reviews_url(restaurant)) %>
+<% method = (review.persisted? ? "put" : "post") %>
+<% message = (review.persisted? ? "Update review" : "Create review") %>
+
+<form action="<%= action %>" method="post">
+  <input
+     name="_method"
+     type="hidden"
+     value="<%= method %>">
+  <input
+     name="authenticity_token"
+     type="hidden"
+     value="<%= form_authenticity_token %>">
+
+  <label for="review_rating">Rating</label>
+  <select id="review_rating" name="review[rating]">
+    <option value="1" <%= "selected" if @review.rating == 1 %>>1</option>
+    <option value="2" <%= "selected" if @review.rating == 2 %>>2</option>
+    <option value="3"<%= "selected" if @review.rating == 3 %>>3</option>
+    <option value="4" <%= "selected" if @review.rating == 4 %>>4</option>
+    <option value="5" <%= "selected" if @review.rating == 5 %>>5</option>
+  </select>
+  <br>
+
+  <label for="review_email">Review Title</label>
+  <input
+     id="review_title"
+     name="review[title]"
+     type="text"
+     value="<%= @review.title %>">
+  <br>
+
+  <label for="review_body">Review Body</label><br>
+<textarea rows="4"
+          cols="50"
+          id="review_body"
+          name="review[body]"><%= @review.body %></textarea>
+  <br>
+
+  <input type="submit" value="<%= message %>">
+</form>

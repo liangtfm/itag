@@ -1,4 +1,6 @@
 <h1><%= @restaurant.name %></h1>
+Average Rating: <%= average_rating(@restaurant) %> (<%= @restaurant.reviews.count%> reviews)<br>
+Categories:<br>
 <ul>
 <% @restaurant.categories.each do |category| %>
   <li><%= category.name %></li>
@@ -8,6 +10,7 @@
   <%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>
 <% end %>
 
+<h3>Restaurant Info</h3>
 <ul>
   <% unless @restaurant.website.empty? %>
     <li><%= link_to @restaurant.website, @restaurant.website %> </li>
@@ -26,3 +29,20 @@
     <li> <%= @restaurant.zip %> </li>
   <% end %>
 </ul>
+
+<h3>Reviews</h3>
+<% if current_user %>
+  <%= link_to "Write a review!", new_restaurant_review_url(@restaurant) %>
+<% end %>
+
+<br><br>
+
+<% @restaurant.reviews.each do |review| %>
+
+<strong>"<%= review.title %>"</strong> by <%= link_to review.user.username, user_url(review.user) %>
+<br>
+Rating: <%= review.rating %>
+<br>
+<%= review.body %>
+<br><br>
+<% end %>
