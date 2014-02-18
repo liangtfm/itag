@@ -11,7 +11,7 @@
   <% end %>
 </h1>
 
-Average Rating: <%= @restaurant.average_rating %> (<%= num_reviews(@restaurant) %> reviews)<br>
+Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)<br>
 
 Categories:<br>
 <ul>

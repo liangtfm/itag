@@ -30,7 +30,7 @@ class Restaurant < ActiveRecord::Base
 
   def average_rating
     total = 0
-    count = num_reviews(self)
+    count = self.reviews.count
 
     if count == 0
       return 0
@@ -41,10 +41,6 @@ class Restaurant < ActiveRecord::Base
 
       return (total.to_f / count).round(1)
     end
-  end
-
-  def num_reviews(restaurant)
-    return restaurant.reviews.count
   end
 
 end
