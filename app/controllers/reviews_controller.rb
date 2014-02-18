@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_filter :require_signed_in!
+
   def new
     @review = Review.new
     @restaurant = Restaurant.find(params[:restaurant_id])
@@ -34,7 +36,7 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = current_user.reviews
+    @reviews = Review.all
   end
 
   def destroy

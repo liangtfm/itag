@@ -3,13 +3,17 @@ Itag::Application.routes.draw do
 
   resource :session, :only => [:create, :destroy, :new]
 
-  resources :restaurants do
-    resources :reviews, :only => [:create, :new]
+  resources :restaurants, :except => [:index] do
+    resources :reviews, :only => [:create, :new, :index]
   end
 
-  resources :reviews, :only => [:index, :show, :edit, :update, :destroy]
+  resources :cities, :only => [:show, :index] do
+    resources :restaurants, :only => [:index]
+  end
 
-  root :to => "restaurants#index"
+  resources :reviews, :only => [:show, :edit, :update, :destroy]
+
+  root :to => "cities#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

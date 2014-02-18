@@ -68,8 +68,6 @@
       value="$$$$" <%= "checked" if @restaurant.price == "$$$$" %> >$$$$</option>
   <br>
 
-
-
   <label for="restaurant_street">Street</label>
   <input
      id="restaurant_street"
@@ -78,19 +76,10 @@
      value="<%= @restaurant.street %>">
   <br>
 
-  <label for="restaurant_city">City</label>
-  <input
-     id="restaurant_city"
-     name="restaurant[city]"
-     type="text"
-     value="<%= @restaurant.city %>">
-  <br>
-
-  <label for="restaurant_state">State</label>
-  <select id="restaurant_state" name="restaurant[state]">
-    <option value="NY" <%= "selected" if @restaurant.state == "NY" %>>NY</option>
-    <option value="SF" <%= "selected" if @restaurant.state == "SF" %>>SF</option>
-    <option value="MA"<%= "selected" if @restaurant.state == "MA" %>>MA</option>
+  <label for="restaurant_city">Location</label>
+  <select id="restaurant_city" name="restaurant[city_id]">
+    <option value="1" <%= "selected" if @restaurant.city_id == 1 %>>New York, NY</option>
+    <option value="2" <%= "selected" if @restaurant.city_id == 2 %>>San Francisco, CA</option>
   </select>
   <br>
 

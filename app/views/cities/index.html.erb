@@ -1,0 +1,8 @@
+<h1>All Cities</h1>
+<ul>
+<% @cities.each do |city| %>
+
+<li><%= link_to city.name, city_restaurants_url(city) %></li>
+
+<% end %>
+</ul>

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
     if user
       sign_in(user)
-      redirect_to restaurants_url
+      redirect_to cities_url
     else
       render :json => "Credentials were wrong"
     end
@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to restaurants_url
+    redirect_to new_session_url
   end
 end

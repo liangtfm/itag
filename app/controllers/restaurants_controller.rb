@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_filter :require_signed_in!, :except => [:index]
 
   def new
     @restaurant = Restaurant.new
@@ -33,7 +34,7 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = City.find(params[:city_id]).restaurants
   end
 
   def destroy

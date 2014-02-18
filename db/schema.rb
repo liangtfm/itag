@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218141009) do
+ActiveRecord::Schema.define(:version => 20140218153045) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -19,19 +19,29 @@ ActiveRecord::Schema.define(:version => 20140218141009) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "cities", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "state_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "cities", ["state_id"], :name => "index_cities_on_state_id"
+
   create_table "restaurants", :force => true do |t|
     t.string   "name",                         :null => false
     t.string   "website"
     t.string   "price"
     t.string   "phone"
     t.string   "street",                       :null => false
-    t.string   "city",                         :null => false
-    t.string   "state",                        :null => false
     t.string   "zip"
     t.boolean  "open",       :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.integer  "city_id"
   end
+
+  add_index "restaurants", ["city_id"], :name => "index_restaurants_on_city_id"
 
   create_table "reviews", :force => true do |t|
     t.string   "title",         :null => false
@@ -45,6 +55,12 @@ ActiveRecord::Schema.define(:version => 20140218141009) do
 
   add_index "reviews", ["restaurant_id"], :name => "index_reviews_on_restaurant_id"
   add_index "reviews", ["user_id"], :name => "index_reviews_on_user_id"
+
+  create_table "states", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "tags", :force => true do |t|
     t.integer  "category_id",   :null => false
