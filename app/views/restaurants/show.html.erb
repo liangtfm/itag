@@ -17,12 +17,18 @@ Categories:<br>
     <li><%= link_to @restaurant.website, @restaurant.website %> </li>
   <% end %>
 
-  <li> <%= @restaurant.phone unless @restaurant.phone.empty? %> </li>
+  <% unless @restaurant.phone.empty? %>
+    <li> <%= @restaurant.phone %> </li>
+  <% end %>
+
   <li> <%= @restaurant.price %> </li>
   <li> <%= @restaurant.street %> </li>
   <li> <%= @restaurant.city.name %> </li>
   <li> <%= @restaurant.state.name %> </li>
-  <li> <%= @restaurant.zip unless @restaurant.zip.empty? %> </li>
+
+  <% unless @restaurant.zip.empty? %>
+    <li> <%= @restaurant.zip %> </li>
+  <% end %>
 </ul>
 
 <h3>Reviews</h3>
