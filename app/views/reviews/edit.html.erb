@@ -1,3 +1,7 @@
 <h1>Update Review</h1>
 
 <%= render "form", :review => @review %>
+
+<br><br>
+
+<%= button_to "Delete Review", review_url(@review), method: :delete %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140217204152) do
+ActiveRecord::Schema.define(:version => 20140218141009) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20140217204152) do
     t.text     "biography"
     t.integer  "age"
     t.string   "gender"
-    t.string   "ethnicity"
     t.string   "location"
     t.boolean  "admin",           :default => false
     t.string   "session_token",                      :null => false

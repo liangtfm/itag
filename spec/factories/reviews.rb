@@ -2,5 +2,10 @@
 
 FactoryGirl.define do
   factory :review do
+    title "Great place!"
+    body "Loved it!"
+    rating 5
+    user_id 1
+    restaurant_id 1
   end
 end

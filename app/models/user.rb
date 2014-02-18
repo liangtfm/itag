@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :email, :biography, :age, :gender, :ethnicity, :location, :admin, :session_token
+  attr_accessible :username, :password, :email, :biography, :age, :gender, :location, :admin, :session_token
   attr_reader :password
 
   before_validation :ensure_session_token
@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :username, :email, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, :allow_nil => true }
   validates :password_digest, presence: true
+  validates :username, :email, uniqueness: true
 
   has_many :reviews
 

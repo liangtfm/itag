@@ -71,16 +71,5 @@
       value="F">F</option>
   <br>
 
-  <label for="user_ethnicity">Race</label>
-  <select id="user_ethnicity" name="user[ethnicity]">
-    <option value="white" <%= "selected" if @user.ethnicity == "white" %>>White</option>
-    <option value="black" <%= "selected" if @user.ethnicity == "black" %>>Black</option>
-    <option value="native"<%= "selected" if @user.ethnicity == "native" %>>Native American</option>
-    <option value="asian" <%= "selected" if @user.ethnicity == "asian" %>>Asian/Pacific Islander</option>
-    <option value="hispanic" <%= "selected" if @user.ethnicity == "hispanic" %>>Hispanic</option>
-    <option value="other" <%= "selected" if @user.ethnicity == "other" %>>Other</option>
-  </select>
-  <br>
-
   <input type="submit" value="<%= message %>">
 </form>

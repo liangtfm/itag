@@ -1,12 +1,12 @@
 <h1><%= @restaurant.name %></h1>
-Average Rating: <%= average_rating(@restaurant) %> (<%= @restaurant.reviews.count%> reviews)<br>
+Average Rating: <%= average_rating(@restaurant) %> (<%= num_reviews(@restaurant) %> reviews)<br>
 Categories:<br>
 <ul>
 <% @restaurant.categories.each do |category| %>
   <li><%= category.name %></li>
 <% end %>
 </ul>
-<% if current_user.admin == true %>
+<% if current_user && current_user.admin == true %>
   <%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>
 <% end %>
 
@@ -44,5 +44,8 @@ Categories:<br>
 Rating: <%= review.rating %>
 <br>
 <%= review.body %>
+<% if current_user && current_user.admin == true %>
+  <%= button_to "Delete Review", review_url(review), method: :delete %>
+<% end %>
 <br><br>
 <% end %>

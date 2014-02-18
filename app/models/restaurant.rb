@@ -3,7 +3,7 @@ class Restaurant < ActiveRecord::Base
 
   validates :name, :street, :city, :state, presence: true
 
-  validates :name, :uniqueness => {:scope => :street}
+  validates :name, uniqueness: {:scope => :street, :message => "That listing already exists!"}
 
   has_many :tags
 

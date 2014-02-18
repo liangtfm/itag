@@ -10,13 +10,15 @@
 
 <% if signed_in? %>
   <ul>
-    <li>Signed in as: <%= current_user.username %> <%= "(admin)" if current_user.admin == true %></li>
+    <li>Signed in as: <%= link_to current_user.username, user_url(current_user) %> <%= "(admin)" if current_user.admin == true %></li>
     <li><%= button_to "Sign Out", session_url, :method => :delete %></li>
   </ul>
 <% else %>
   <%= link_to "Sign In", new_session_url %> or
   <%= link_to "Sign up", new_user_url %>
 <% end %>
+
+<%= link_to "Home", restaurants_url %>
 
 <%= yield %>
 
