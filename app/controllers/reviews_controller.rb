@@ -4,6 +4,9 @@ class ReviewsController < ApplicationController
   def new
     @review = Review.new
     @restaurant = Restaurant.find(params[:restaurant_id])
+    if @restaurant.open == false
+      render json: "That restaurant is closed!"
+    end
   end
 
   def create

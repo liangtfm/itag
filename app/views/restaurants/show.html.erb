@@ -1,5 +1,5 @@
 <%= link_to "Back", city_restaurants_url(@restaurant.city) %>
-<h1><%= @restaurant.name %></h1>
+<h1><%= @restaurant.name %> <%= "(CLOSED)" if @restaurant.open == false %></h1>
 Average Rating: <%= average_rating(@restaurant) %> (<%= num_reviews(@restaurant) %> reviews)<br>
 Categories:<br>
 <ul>
@@ -26,7 +26,7 @@ Categories:<br>
 </ul>
 
 <h3>Reviews</h3>
-<% if current_user %>
+<% if current_user && @restaurant.open == true %>
   <%= link_to "Write a review!", new_restaurant_review_url(@restaurant) %>
 <% end %>
 

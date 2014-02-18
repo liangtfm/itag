@@ -50,22 +50,22 @@
      id="restaurant_price"
      name="restaurant[price]"
      type="radio"
-     value="$" <%= "checked" if @restaurant.price == "$" %> >$</option>
+     value="$" <%= "checked" if @restaurant.price == "$" %> >$</input>
   <input
     id="restaurant_price"
     name="restaurant[price]"
     type="radio"
-    value="$$" <%= "checked" if @restaurant.price == "$$" %> >$$</option>
+    value="$$" <%= "checked" if @restaurant.price == "$$" %> >$$</input>
   <input
      id="restaurant_price"
      name="restaurant[price]"
      type="radio"
-     value="$$$" <%= "checked" if @restaurant.price == "$$$" %> >$$$</option>
+     value="$$$" <%= "checked" if @restaurant.price == "$$$" %> >$$$</input>
    <input
       id="restaurant_price"
       name="restaurant[price]"
       type="radio"
-      value="$$$$" <%= "checked" if @restaurant.price == "$$$$" %> >$$$$</option>
+      value="$$$$" <%= "checked" if @restaurant.price == "$$$$" %> >$$$$</input>
   <br>
 
   <label for="restaurant_street">Street</label>
@@ -91,6 +91,21 @@
      value="<%= @restaurant.zip %>">
   <br>
 
+  <label for="restaurant_open">Closed?</label>
+  Yes<input
+     id="restaurant_open"
+     name="restaurant[open]"
+     type="radio"
+     value="false" <%= "checked" if @restaurant.open == false %>>
+   </input>
 
+   No<input
+      id="restaurant_open"
+      name="restaurant[open]"
+      type="radio"
+      value="true" <%= "checked" if @restaurant.open == true %>>
+    </input>
+
+   <br>
   <input type="submit" value="<%= message %>">
 </form>
