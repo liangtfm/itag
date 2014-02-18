@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
   through: :reviews,
   source: :restaurant
 
+  has_many :favorites
+
+  has_many :favorite_places,
+  through: :favorites,
+  source: :restaurant
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     user.try(:is_password?, password) ? user : nil

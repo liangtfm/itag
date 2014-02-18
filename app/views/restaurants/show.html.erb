@@ -1,6 +1,18 @@
 <%= link_to "Back", city_restaurants_url(@restaurant.city) %>
-<h1><%= @restaurant.name %> <%= "(CLOSED)" if @restaurant.open == false %></h1>
+
+<h1>
+  <%= @restaurant.name %>
+  <%= "(CLOSED)" if @restaurant.open == false %>
+
+  <% if current_user.favorite_places.include?(@restaurant) %>
+    <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete %>
+  <% else %>
+    <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post %>
+  <% end %>
+</h1>
+
 Average Rating: <%= average_rating(@restaurant) %> (<%= num_reviews(@restaurant) %> reviews)<br>
+
 Categories:<br>
 <ul>
 <% @restaurant.categories.each do |category| %>
@@ -11,25 +23,26 @@ Categories:<br>
   <%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>
 <% end %>
 
+<!-- RESTAURANT INFO -->
+
 <h3>Restaurant Info</h3>
 <ul>
   <% unless @restaurant.website.empty? %>
     <li><%= link_to @restaurant.website, @restaurant.website %> </li>
   <% end %>
-
   <% unless @restaurant.phone.empty? %>
     <li> <%= @restaurant.phone %> </li>
   <% end %>
-
   <li> <%= @restaurant.price %> </li>
   <li> <%= @restaurant.street %> </li>
   <li> <%= @restaurant.city.name %> </li>
   <li> <%= @restaurant.state.name %> </li>
-
   <% unless @restaurant.zip.empty? %>
     <li> <%= @restaurant.zip %> </li>
   <% end %>
 </ul>
+
+<!-- REVIEWS -->
 
 <h3>Reviews</h3>
 <% if current_user && @restaurant.open == true %>

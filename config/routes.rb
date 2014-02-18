@@ -5,6 +5,7 @@ Itag::Application.routes.draw do
 
   resources :restaurants, :except => [:index] do
     resources :reviews, :only => [:create, :new, :index]
+    resources :favorites, :only => [:create, :destroy]
   end
 
   resources :cities, :only => [:show, :index] do

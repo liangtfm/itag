@@ -1,0 +1,6 @@
+<ul>
+<% user.favorite_places.each do |place| %>
+<li><strong><%= link_to place.name, restaurant_url(place) %></strong></li>
+
+<% end %>
+</ul>

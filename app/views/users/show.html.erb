@@ -18,12 +18,11 @@
   <% end %>
 </ul>
 
-
-
-Biography:
+<h3>Biography:</h3>
 <p><%= @user.biography %></p>
 
+<h3>Favorite Places:</h3>
+<%= render "favorites/user", :user => @user %>
 
 <h3>Reviews:</h3>
-
 <%= render "reviews/user", :user => @user %>
