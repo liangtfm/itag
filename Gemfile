@@ -11,6 +11,10 @@ gem 'jquery-rails'
 gem 'backbone-on-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
+gem 'figaro'
+gem 'paperclip'
+gem 'aws-sdk'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

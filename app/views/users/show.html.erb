@@ -1,11 +1,16 @@
 <%= link_to "Home", cities_url %>
 <h1>Welcome to <%= @user.username %>'s Profile!</h1>
+
+<%= image_tag @user.photo.url(:big) %>
+
+<br>
+
 <% if current_user == @user %>
   <%= link_to "Edit Profile", edit_user_url(@user) %>
 <% end %>
 
 <ul>
-  <% if @user.location %>
+  <% unless @user.location.empty? %>
     <li> <%= @user.location %> </li>
   <% end %>
 

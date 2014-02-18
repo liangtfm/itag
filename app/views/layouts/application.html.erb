@@ -10,7 +10,10 @@
 
 <% if signed_in? %>
   <ul>
-    <li>Signed in as: <%= link_to current_user.username, user_url(current_user) %> <%= "(admin)" if current_user.admin == true %></li>
+    <li>Signed in as:
+      <%= link_to current_user.username, user_url(current_user) %>
+      <%= "(admin)" if current_user.admin == true %>
+    </li>
     <li><%= button_to "Sign Out", session_url, :method => :delete %></li>
   </ul>
 <% else %>

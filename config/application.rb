@@ -25,8 +25,6 @@ module Itag
 
     config.i18n.enforce_available_locales = true
 
-
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -76,5 +74,14 @@ module Itag
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+
+    config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_credentials => {
+        :bucket => ENV["S3_BUCKET"],
+        :access_key_id => ENV["S3_KEY"],
+        :secret_access_key => ENV["S3_SECRET_KEY"]
+      }
+    }
   end
 end

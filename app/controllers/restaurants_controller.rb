@@ -34,7 +34,7 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    @restaurants = City.find(params[:city_id]).restaurants
+    @restaurants = City.find(params[:city_id]).restaurants.sort_by{ |rest| rest.average_rating}.reverse
   end
 
   def destroy

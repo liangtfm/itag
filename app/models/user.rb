@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :email, :biography, :age, :gender, :location, :admin, :session_token
+  attr_accessible :username, :password, :email, :biography, :age, :gender, :location, :admin, :session_token, :photo
   attr_reader :password
 
   before_validation :ensure_session_token
@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, :allow_nil => true }
   validates :password_digest, presence: true
   validates :username, :email, uniqueness: true
+
+  has_attached_file :photo, :styles => {
+    :big => "100x100#",
+    :small => "60x60#"
+  }
 
   has_many :reviews
 

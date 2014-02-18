@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218190740) do
+ActiveRecord::Schema.define(:version => 20140218223018) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -83,17 +83,21 @@ ActiveRecord::Schema.define(:version => 20140218190740) do
   add_index "tags", ["restaurant_id"], :name => "index_tags_on_restaurant_id"
 
   create_table "users", :force => true do |t|
-    t.string   "username",                           :null => false
-    t.string   "password_digest",                    :null => false
-    t.string   "email",                              :null => false
+    t.string   "username",                              :null => false
+    t.string   "password_digest",                       :null => false
+    t.string   "email",                                 :null => false
     t.text     "biography"
     t.integer  "age"
     t.string   "gender"
     t.string   "location"
-    t.boolean  "admin",           :default => false
-    t.string   "session_token",                      :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.boolean  "admin",              :default => false
+    t.string   "session_token",                         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

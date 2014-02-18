@@ -2,7 +2,7 @@
 <% method = (user.persisted? ? "put" : "post") %>
 <% message = (user.persisted? ? "Update user" : "Create user") %>
 
-<form action="<%= action %>" method="post">
+<form action="<%= action %>" method="post" enctype="multipart/form-data">
   <input
      name="_method"
      type="hidden"
@@ -63,12 +63,19 @@
      id="user_gender"
      name="user[gender]"
      type="radio"
-     value="M" <%= "checked" if @user.gender == "M" %> >M</option>
+     value="M" <%= "checked" if @user.gender == "M" %> >M</input>
    <input
       id="user_gender"
       name="user[gender]"
       type="radio"
-      value="F">F</option>
+      value="F">F</input>
+  <br>
+
+  <label for="user_photo">Upload a photo!</label>
+  <input
+      id="user_photo"
+      name="user[photo]"
+      type="file">
   <br>
 
   <input type="submit" value="<%= message %>">
