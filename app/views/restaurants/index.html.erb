@@ -1,3 +1,15 @@
+<form id="page-changer" action="" method="post">
+  <select onChange="window.location.replace(this.options[this.selectedIndex].value)">
+    <option value="">Go to city...</option>
+    <% City.all.each do |city| %>
+      <option value="<%= city_restaurants_url(city) %>">
+        <%= city.name %>, <%= city.state.name %>
+      </option>
+    <% end %>
+  </select>
+</form>
+<br>
+
 <%= link_to "Back", cities_url %>
 <h1>All Restaurants in <%= @city.name %>, <%= @city.state.name %></h1>
 <%= link_to "Add a new restaurant", new_city_restaurant_url(@city) %>

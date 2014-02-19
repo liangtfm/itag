@@ -6,9 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-State.create([{name: 'NY'}, {name: 'CA'}, {name: 'MA'}, {name: 'NH'}])
+State.create([
+  {name: 'NY'}, #1
+  {name: 'CA'}, #2
+  {name: 'MA'}, #3
+  {name: 'NH'}  #4
+  ])
 
-City.create([{name: 'New York', state_id: 1}, {name: 'San Francisco', state_id: 2}, {name: 'Boston', state_id: 3}, {name: 'Manchester', state_id: 4}])
+City.create([
+  {name: 'New York', state_id: 1},
+  {name: 'San Francisco', state_id: 2},
+  {name: 'Boston', state_id: 3},
+  {name: 'Manchester', state_id: 4}
+  ])
 
 Category.create([
   {name: 'American (new)'},
