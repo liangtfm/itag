@@ -33,7 +33,9 @@ Categories:<br>
   <% unless @restaurant.phone.empty? %>
     <li> <%= @restaurant.phone %> </li>
   <% end %>
-  <li> <%= @restaurant.price %> </li>
+  <% unless @restaurant.price.nil? %>
+    <li> <%= @restaurant.price %> </li>
+  <% end %>
   <li> <%= @restaurant.street %> </li>
   <li> <%= @restaurant.city.name %> </li>
   <li> <%= @restaurant.state.name %> </li>

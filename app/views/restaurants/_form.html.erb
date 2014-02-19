@@ -78,8 +78,9 @@
 
   <label for="restaurant_city">Location</label>
   <select id="restaurant_city" name="restaurant[city_id]">
-    <option value="1" <%= "selected" if @restaurant.city_id == 1 %>>New York, NY</option>
-    <option value="2" <%= "selected" if @restaurant.city_id == 2 %>>San Francisco, CA</option>
+    <% City.all.each do |city| %>
+    <option value="<%= city.id %>" <%= "selected" if @restaurant.city_id == city.id %>><%= city.name %>, <%= city.state.name %></option>
+    <% end %>
   </select>
   <br>
 
