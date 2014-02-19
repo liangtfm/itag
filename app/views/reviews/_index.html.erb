@@ -6,11 +6,13 @@ Rating: <%= review.rating %>
 <br>
 <%= review.body %>
 
+<% unless current_user == review.user %>
   <% if current_user.voted_reviews.include?(review) %>
     <%= button_to "UNCOOL REVIEW!", review_vote_tag_url(review), method: :delete %>
   <% else %>
     <%= button_to "COOL REVIEW!", review_vote_tags_url(review), method: :post %>
   <% end %>
+<% end %>
 
   <% unless review.vote_tags.empty? %>
   (<%= review.vote_tags.count %>)
