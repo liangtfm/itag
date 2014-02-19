@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219142513) do
+ActiveRecord::Schema.define(:version => 20140219155256) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(:version => 20140219142513) do
 
   add_index "favorites", ["restaurant_id"], :name => "index_favorites_on_restaurant_id"
   add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
+
+  create_table "follows", :force => true do |t|
+    t.integer  "follower_id", :null => false
+    t.integer  "followed_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "follows", ["followed_id"], :name => "index_follows_on_followed_id"
+  add_index "follows", ["follower_id"], :name => "index_follows_on_follower_id"
 
   create_table "restaurants", :force => true do |t|
     t.string   "name",                                 :null => false

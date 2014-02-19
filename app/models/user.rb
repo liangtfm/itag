@@ -26,6 +26,25 @@ class User < ActiveRecord::Base
   through: :favorites,
   source: :restaurant
 
+  has_many :follows,
+  class_name: "Follow",
+  foreign_key: :followed_id,
+  primary_key: :id
+
+  has_many :followed,
+  class_name: "Follow",
+  foreign_key: :follower_id,
+  primary_key: :id
+
+  has_many :followers,
+  through: :follows,
+  source: :follower
+
+  has_many :followed_users,
+  through: :followed,
+  source: :followed
+
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     user.try(:is_password?, password) ? user : nil

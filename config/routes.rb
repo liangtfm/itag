@@ -1,5 +1,7 @@
 Itag::Application.routes.draw do
-  resources :users, :only => [:create, :new, :show, :edit, :update]
+  resources :users, :only => [:create, :new, :show, :edit, :update] do
+    resources :follows, :only => [:create, :destroy]
+  end
 
   resource :session, :only => [:create, :destroy, :new]
 
