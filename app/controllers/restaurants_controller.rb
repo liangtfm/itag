@@ -47,4 +47,15 @@ class RestaurantsController < ApplicationController
 
     redirect_to restaurants_url
   end
+
+  def search
+    @restaurants = Restaurant.where("city_id = ?", params[:city_id])
+
+    @category = Category.find(params[:cat_id])
+
+    @restaurants.select! { |rest| rest.categories.include?(@category) }
+
+    return @restaurants
+  end
+
 end

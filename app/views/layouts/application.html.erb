@@ -21,6 +21,32 @@
   <%= link_to "Sign up", new_user_url %>
 <% end %>
 
+<form id="search" action="<%= search_restaurants_url %>" method="post">
+  <input
+     name="authenticity_token"
+     type="hidden"
+     value="<%= form_authenticity_token %>">
+
+  <label>Food Type</label>
+  <select name="cat_id">
+  <% Category.all.each do |cat| %>
+    <option value="<%= cat.id %>"><%= cat.name %></option>
+  <% end %>
+  </select>
+
+  <label>City</label>
+  <select name="city_id">
+  <% City.all.each do |city| %>
+    <option value="<%= city.id %>">
+      <%= city.name %>, <%= city.state.name %>
+    </option>
+  <% end %>
+  </select>
+
+  <input type="submit" value="Find!">
+</form>
+<br>
+
 <%= yield %>
 
 </body>

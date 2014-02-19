@@ -1,0 +1,22 @@
+<%= link_to "Back", cities_url %>
+<h1>SEARCH RESULTS!</h1>
+
+<% if @restaurants.empty? %>
+  <%= "No results found!" %>
+<% else %>
+  <ul>
+  <% @restaurants.each do |restaurant| %>
+
+    <li>
+      <a href="<%= restaurant_url(restaurant) %>">
+      <% if restaurant.photo.file? %>
+        <%= image_tag restaurant.photo.url(:small) %>
+      <% end %>
+      <%= restaurant.name %>
+      </a>
+      (Average Rating: <%= restaurant.average_rating %>)
+    </li>
+
+  <% end %>
+  </ul>
+<% end %>
