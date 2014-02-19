@@ -11,6 +11,10 @@
   <% end %>
 </h1>
 
+<%= image_tag @restaurant.photo.url(:big) %>
+
+<br>
+
 Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)<br>
 
 Categories:<br>
