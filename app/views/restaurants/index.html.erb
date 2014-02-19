@@ -6,10 +6,12 @@
 <% @restaurants.each do |restaurant| %>
 
   <li>
+    <a href="<%= restaurant_url(restaurant) %>">
     <% if restaurant.photo.file? %>
       <%= image_tag restaurant.photo.url(:small) %>
     <% end %>
-    <%= link_to restaurant.name, restaurant_url(restaurant) %>
+    <%= restaurant.name %>
+    </a>
     (Average Rating: <%= restaurant.average_rating %>)
   </li>
 

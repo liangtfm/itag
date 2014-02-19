@@ -10,4 +10,8 @@ class Review < ActiveRecord::Base
 
   belongs_to :user
 
+  def time_since_creation
+    return (Time.now - self.created_at)
+  end
+
 end
