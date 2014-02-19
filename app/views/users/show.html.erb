@@ -1,7 +1,9 @@
 <%= link_to "Home", cities_url %>
 <h1>Welcome to <%= @user.username %>'s Profile!</h1>
 
-<%= image_tag @user.photo.url(:big) %>
+<% if @user.photo.file? %>
+  <%= image_tag @user.photo.url(:big) %>
+<% end %>
 
 <br>
 

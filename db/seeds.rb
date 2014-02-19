@@ -22,7 +22,9 @@ Category.create([
   {name: 'Italian'},
   {name: 'Japanese'},
   {name: 'Korean'},
+  {name: 'Mediterranean'},
   {name: 'Seafood'},
+  {name: 'Spanish'},
   {name: 'Thai'},
   {name: 'Vietnamese'}
   ])

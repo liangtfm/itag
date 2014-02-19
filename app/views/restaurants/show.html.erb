@@ -14,8 +14,9 @@
   <% end %>
 </h1>
 
-<%= image_tag @restaurant.photo.url(:big) %>
-
+<% if @restaurant.photo.file? %>
+  <%= image_tag @restaurant.photo.url(:big) %>
+<% end %>
 <br>
 
 Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)<br>
