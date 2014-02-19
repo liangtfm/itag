@@ -1,9 +1,15 @@
 class Restaurant < ActiveRecord::Base
-  attr_accessible :name, :website, :price, :phone, :street, :city_id, :zip, :open, :category_ids
+  attr_accessible :name, :website, :price, :phone, :street, :city_id, :zip, :open, :category_ids, :photo
 
   validates :name, :street, :city_id, presence: true
 
   validates :name, uniqueness: {:scope => :street, :message => "That listing already exists!"}
+
+  has_attached_file :photo, :styles => {
+    :big => "250x250>",
+    :medium => "100x100#",
+    :small => "60x60#"
+  }
 
   has_many :tags
 

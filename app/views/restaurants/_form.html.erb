@@ -2,7 +2,7 @@
 <% method = (restaurant.persisted? ? "put" : "post") %>
 <% message = (restaurant.persisted? ? "Update Restaurant" : "Add Restaurant") %>
 
-<form action="<%= action %>" method="post">
+<form action="<%= action %>" method="post" enctype="multipart/form-data">
   <input
      name="_method"
      type="hidden"
@@ -106,7 +106,14 @@
       type="radio"
       value="true" <%= "checked" if @restaurant.open == true %>>
     </input>
+    <br>
 
+    <label for="restaurant_photo">Add a photo for this restaurant!</label>
+    <input
+        id="restaurant_photo"
+        name="restaurant[photo]"
+        type="file">
    <br>
+
   <input type="submit" value="<%= message %>">
 </form>

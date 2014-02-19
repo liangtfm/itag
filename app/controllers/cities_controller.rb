@@ -4,4 +4,8 @@ class CitiesController < ApplicationController
     @cities = City.all
   end
 
+  def show
+
+  end
+
 end
