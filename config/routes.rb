@@ -14,7 +14,9 @@ Itag::Application.routes.draw do
     resources :restaurants, :only => [:index, :new, :create]
   end
 
-  resources :reviews, :only => [:show, :edit, :update, :destroy]
+  resources :reviews, :only => [:show, :edit, :update, :destroy] do
+    resources :vote_tags, :only => [:create, :destroy]
+  end
 
   root :to => "cities#index"
 

@@ -44,6 +44,13 @@ class User < ActiveRecord::Base
   through: :followed,
   source: :followed
 
+  has_many :vote_tags
+
+  has_many :voted_reviews,
+  through: :vote_tags,
+  source: :review
+
+
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)

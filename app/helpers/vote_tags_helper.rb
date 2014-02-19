@@ -1,0 +1,2 @@
+module VoteTagsHelper
+end

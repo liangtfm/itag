@@ -10,6 +10,13 @@ class Review < ActiveRecord::Base
 
   belongs_to :user
 
+  has_many :vote_tags
+
+  has_many :users_who_voted,
+  through: :vote_tags,
+  source: :user
+
+
   def time_since_creation
     # method to return (TODAY - review.created_at) "5 minutes ago"
   end

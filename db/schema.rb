@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219155256) do
+ActiveRecord::Schema.define(:version => 20140219183155) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -116,5 +116,23 @@ ActiveRecord::Schema.define(:version => 20140219155256) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "vote_tags", :force => true do |t|
+    t.integer  "vote_id",    :null => false
+    t.integer  "review_id",  :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "vote_tags", ["review_id"], :name => "index_vote_tags_on_review_id"
+  add_index "vote_tags", ["user_id"], :name => "index_vote_tags_on_user_id"
+  add_index "vote_tags", ["vote_id"], :name => "index_vote_tags_on_vote_id"
+
+  create_table "votes", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
