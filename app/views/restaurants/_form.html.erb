@@ -1,4 +1,4 @@
-<% action = (restaurant.persisted? ? restaurant_url(restaurant) : restaurants_url) %>
+<% action = (restaurant.persisted? ? restaurant_url(restaurant) : city_restaurants_url) %>
 <% method = (restaurant.persisted? ? "put" : "post") %>
 <% message = (restaurant.persisted? ? "Update Restaurant" : "Add Restaurant") %>
 
@@ -117,3 +117,4 @@
 
   <input type="submit" value="<%= message %>">
 </form>
+<br>

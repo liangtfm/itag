@@ -3,13 +3,13 @@ Itag::Application.routes.draw do
 
   resource :session, :only => [:create, :destroy, :new]
 
-  resources :restaurants, :except => [:index] do
+  resources :restaurants, :except => [:index, :new, :create] do
     resources :reviews, :only => [:create, :new, :index]
     resources :favorites, :only => [:create, :destroy]
   end
 
   resources :cities, :only => [:show, :index] do
-    resources :restaurants, :only => [:index]
+    resources :restaurants, :only => [:index, :new, :create]
   end
 
   resources :reviews, :only => [:show, :edit, :update, :destroy]

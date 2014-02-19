@@ -3,6 +3,9 @@
 <h1>
   <%= @restaurant.name %>
   <%= "(CLOSED)" if @restaurant.open == false %>
+  <% if current_user && current_user.admin == true %>
+    (<%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>)
+  <% end %>
 
   <% if current_user.favorite_places.include?(@restaurant) %>
     <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete %>
@@ -23,9 +26,6 @@ Categories:<br>
   <li><%= category.name %></li>
 <% end %>
 </ul>
-<% if current_user && current_user.admin == true %>
-  <%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>
-<% end %>
 
 <!-- RESTAURANT INFO -->
 

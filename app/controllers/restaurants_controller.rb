@@ -2,11 +2,13 @@ class RestaurantsController < ApplicationController
   before_filter :require_signed_in!, :except => [:index]
 
   def new
-    @restaurant = Restaurant.new
+    @city = City.find(params[:city_id])
+    @restaurant = @city.restaurants.new
   end
 
   def create
-    @restaurant = Restaurant.new(params[:restaurant])
+    @city = City.find(params[:city_id])
+    @restaurant = @city.restaurants.new(params[:restaurant])
 
     if @restaurant.save
       redirect_to restaurant_url(@restaurant)
