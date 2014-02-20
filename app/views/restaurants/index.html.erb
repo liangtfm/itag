@@ -1,31 +1,35 @@
-<form id="page-changer" action="" method="post">
-  <select onChange="window.location.replace(this.options[this.selectedIndex].value)">
-    <option value="">Go to city...</option>
-    <% City.all.each do |city| %>
-      <option value="<%= city_restaurants_url(city) %>">
-        <%= city.name %>, <%= city.state.name %>
-      </option>
-    <% end %>
-  </select>
-</form>
-<br>
+<div class="city-switch">
+  <form id="page-changer" action="" method="post">
+    <select onChange="window.location.replace(this.options[this.selectedIndex].value)">
+      <option value="">Go to city...</option>
+      <% City.all.each do |city| %>
+        <option value="<%= city_restaurants_url(city) %>">
+          <%= city.name %>, <%= city.state.name %>
+        </option>
+      <% end %>
+    </select>
+  </form>
+</div>
 
-<%= link_to "Back", cities_url %>
-<h1>All Restaurants in <%= @city.name %>, <%= @city.state.name %></h1>
-<%= link_to "Add a new restaurant", new_city_restaurant_url(@city) %>
+<div class="content group">
 
-<ul>
-<% @restaurants.each do |restaurant| %>
+  <h1>All Restaurants in <%= @city.name %>, <%= @city.state.name %></h1>
+  <%= link_to "Add a new restaurant", new_city_restaurant_url(@city) %>
 
-  <li>
-    <a href="<%= restaurant_url(restaurant) %>">
-    <% if restaurant.photo.file? %>
-      <%= image_tag restaurant.photo.url(:small) %>
-    <% end %>
-    <%= restaurant.name %>
-    </a>
-    (Average Rating: <%= restaurant.average_rating %>)
-  </li>
+  <ul>
+  <% @restaurants.each do |restaurant| %>
 
-<% end %>
-</ul>
+    <li>
+      <a href="<%= restaurant_url(restaurant) %>">
+      <% if restaurant.photo.file? %>
+        <%= image_tag restaurant.photo.url(:small) %>
+      <% end %>
+      <%= restaurant.name %>
+      </a>
+      (Average Rating: <%= restaurant.average_rating %>)
+    </li>
+
+  <% end %>
+  </ul>
+
+</div>

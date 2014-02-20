@@ -11,53 +11,73 @@
 <nav class="group">
   <div class="container group">
 
-    <div class="group info">
-      <% if signed_in? %>
-        <ul>
-          <li>Signed in as:
+
+    <div class="info">
+      <ul>
+        <strong>
+        <% if signed_in? %>
+          <li>User:
             <%= link_to current_user.username, user_url(current_user) %>
             <%= "(admin)" if current_user.admin == true %>
           </li>
-          <li><%= button_to "Sign Out", session_url, :method => :delete %></li>
-        </ul>
-      <% else %>
-        <%= link_to "Sign In", new_session_url %> or
-        <%= link_to "Sign up", new_user_url %>
-      <% end %>
+          <li><%= link_to "Sign Out", session_url, :method => :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign In", new_session_url %></li>
+          <li><%= link_to "Sign up", new_user_url %></li>
+        <% end %>
+        </strong>
+      </ul>
     </div>
 
+    <div class="logo">
+      <a href="<%= cities_url %>">
+        <img src="http://i.imgur.com/yxKpGfC.png">
+      </a>
+    </div>
 
-    <a href="<%= cities_url %>"><img width="200" height="70" src=http://i.imgur.com/4XS71Sg.png"></a>
+    <div class="search group">
+      <form class="group" action="<%= search_url %>" method="post">
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
+        <label>Food Type</label>
+        <select name="cat_id" class="searchSelect">
+        <% Category.all.each do |cat| %>
+          <option value="<%= cat.id %>"><%= cat.name %></option>
+        <% end %>
+        </select>
 
-    <form action="<%= search_url %>" method="post">
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+        <label>In</label>
+        <select name="city_id" class="searchSelect">
+        <% City.all.each do |city| %>
+          <option value="<%= city.id %>">
+            <%= city.name %>, <%= city.state.name %>
+          </option>
+        <% end %>
+        </select>
 
-      <label>Food Type</label>
-      <select name="cat_id">
-      <% Category.all.each do |cat| %>
-        <option value="<%= cat.id %>"><%= cat.name %></option>
-      <% end %>
-      </select>
+        <input id="find" type="submit" value="Find!">
+      </form>
 
-      <label>City</label>
-      <select name="city_id">
-      <% City.all.each do |city| %>
-        <option value="<%= city.id %>">
-          <%= city.name %>, <%= city.state.name %>
-        </option>
-      <% end %>
-      </select>
-
-      <input id="find" type="submit" value="Find!">
-    </form>
+      <ul class="mini-nav group">
+        <li><%= link_to "Home", cities_url %></li>
+        <% if signed_in? %>
+          <li><%= link_to "My Profile", user_url(current_user)%></li>
+        <% else %>
+          <li><%= link_to "My Profile", new_user_url %></li>
+        <% end %>
+      </ul>
+    </div>
 
   </div>
 </nav>
 
+<main>
+  <div class="main group">
 
+    <%= yield %>
 
-<%= yield %>
+  </div>
+</main>
 
 </body>
 </html>

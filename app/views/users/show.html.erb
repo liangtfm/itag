@@ -1,49 +1,52 @@
-<%= link_to "Home", cities_url %>
-<h1>Welcome to <%= @user.username %>'s Profile!
+<div class="content group">
 
-<% unless current_user == @user %>
+  <h1>Welcome to <%= @user.username %>'s Profile!
 
-  <% if current_user.followed_users.include?(@user) %>
-    <%= button_to "UNFOLLOW", user_follow_url(@user), method: :delete %>
-  <% else %>
-    <%= button_to "FOLLOW", user_follows_url(@user), method: :post %>
+  <% unless current_user == @user %>
+
+    <% if current_user.followed_users.include?(@user) %>
+      <%= button_to "UNFOLLOW", user_follow_url(@user), method: :delete %>
+    <% else %>
+      <%= button_to "FOLLOW", user_follows_url(@user), method: :post %>
+    <% end %>
+
   <% end %>
 
-<% end %>
+  </h1>
 
-</h1>
-
-<% if @user.photo.file? %>
-  <%= image_tag @user.photo.url(:big) %>
-<% end %>
-
-<br>
-
-<% if current_user == @user %>
-  <%= link_to "Edit Profile", edit_user_url(@user) %>
-<% end %>
-
-<ul>
-  <% unless @user.location.empty? %>
-    <li> <%= @user.location %> </li>
+  <% if @user.photo.file? %>
+    <%= image_tag @user.photo.url(:big) %>
   <% end %>
 
-  <% if @user.age %>
-    <li> <%= @user.age %> </li>
+  <br>
+
+  <% if current_user == @user %>
+    <%= link_to "Edit Profile", edit_user_url(@user) %>
   <% end %>
 
-  <% if @user.gender %>
-    <li> <%= @user.gender %> </li>
-  <% end %>
-</ul>
+  <ul>
+    <% unless @user.location.empty? %>
+      <li>Hometown: <%= @user.location %> </li>
+    <% end %>
 
-<h3>Biography:</h3>
-<p><%= @user.biography %></p>
+    <% if @user.age %>
+      <li>Age: <%= @user.age %> </li>
+    <% end %>
 
-<h3>Favorite Places:</h3>
-<%= render "favorites/user", :user => @user %>
+    <% if @user.gender %>
+      <li>Gender: <%= @user.gender %> </li>
+    <% end %>
+  </ul>
 
-<h3>Reviews:</h3>
-<%= render "reviews/user", :user => @user %>
+  <h3>Biography:</h3>
+  <p><%= @user.biography %></p>
 
-<%= render "follows/user", :user => @user %>
+  <h3>Favorite Places:</h3>
+  <%= render "favorites/user", :user => @user %>
+
+  <h3>Reviews:</h3>
+  <%= render "reviews/user", :user => @user %>
+
+  <%= render "follows/user", :user => @user %>
+
+</div>

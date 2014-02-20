@@ -1,8 +1,13 @@
-<h1>Use the search or pick a city to browse!</h1>
-<ul>
-<% @cities.each do |city| %>
+<div class="content group">
 
-<li><a href="<%= city_restaurants_url(city) %>"><%= city.name %>, <%= city.state.name %></a></li>
+  <h1>Use the search or pick a city to browse!</h1>
 
-<% end %>
-</ul>
+  <ul>
+  <% @cities.each do |city| %>
+
+  <li><a href="<%= city_restaurants_url(city) %>"><%= city.name %>, <%= city.state.name %></a></li>
+
+  <% end %>
+  </ul>
+
+</div>

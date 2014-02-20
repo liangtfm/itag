@@ -1,61 +1,63 @@
-<%= link_to "Back", city_restaurants_url(@restaurant.city) %>
+<div class="content group">
 
-<h1>
-  <%= @restaurant.name %>
-  <%= "(CLOSED)" if @restaurant.open == false %>
-  <% if current_user && current_user.admin == true %>
-    (<%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>)
+  <h1>
+    <%= @restaurant.name %>
+    <%= "(CLOSED)" if @restaurant.open == false %>
+    <% if current_user && current_user.admin == true %>
+      (<%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>)
+    <% end %>
+
+    <% if current_user.favorite_places.include?(@restaurant) %>
+      <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete %>
+    <% else %>
+      <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post %>
+    <% end %>
+  </h1>
+
+  <% if @restaurant.photo.file? %>
+    <%= image_tag @restaurant.photo.url(:big) %>
+  <% end %>
+  <br>
+
+  Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)<br>
+
+  Categories:<br>
+  <ul>
+  <% @restaurant.categories.each do |category| %>
+    <li><%= category.name %></li>
+  <% end %>
+  </ul>
+
+  <!-- RESTAURANT INFO -->
+
+  <h3>Restaurant Info</h3>
+  <ul>
+    <% unless @restaurant.website.empty? %>
+      <li><%= link_to @restaurant.website, @restaurant.website %> </li>
+    <% end %>
+    <% unless @restaurant.phone.empty? %>
+      <li> <%= @restaurant.phone %> </li>
+    <% end %>
+    <% unless @restaurant.price.nil? %>
+      <li> <%= @restaurant.price %> </li>
+    <% end %>
+    <li> <%= @restaurant.street %> </li>
+    <li> <%= @restaurant.city.name %> </li>
+    <li> <%= @restaurant.state.name %> </li>
+    <% unless @restaurant.zip.empty? %>
+      <li> <%= @restaurant.zip %> </li>
+    <% end %>
+  </ul>
+
+  <!-- REVIEWS -->
+
+  <h3>Reviews</h3>
+  <% if current_user && @restaurant.open == true %>
+    <%= link_to "Write a review!", new_restaurant_review_url(@restaurant) %>
   <% end %>
 
-  <% if current_user.favorite_places.include?(@restaurant) %>
-    <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete %>
-  <% else %>
-    <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post %>
-  <% end %>
-</h1>
+  <br><br>
 
-<% if @restaurant.photo.file? %>
-  <%= image_tag @restaurant.photo.url(:big) %>
-<% end %>
-<br>
+  <%= render "reviews/index", :restaurant => @restaurant %>
 
-Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)<br>
-
-Categories:<br>
-<ul>
-<% @restaurant.categories.each do |category| %>
-  <li><%= category.name %></li>
-<% end %>
-</ul>
-
-<!-- RESTAURANT INFO -->
-
-<h3>Restaurant Info</h3>
-<ul>
-  <% unless @restaurant.website.empty? %>
-    <li><%= link_to @restaurant.website, @restaurant.website %> </li>
-  <% end %>
-  <% unless @restaurant.phone.empty? %>
-    <li> <%= @restaurant.phone %> </li>
-  <% end %>
-  <% unless @restaurant.price.nil? %>
-    <li> <%= @restaurant.price %> </li>
-  <% end %>
-  <li> <%= @restaurant.street %> </li>
-  <li> <%= @restaurant.city.name %> </li>
-  <li> <%= @restaurant.state.name %> </li>
-  <% unless @restaurant.zip.empty? %>
-    <li> <%= @restaurant.zip %> </li>
-  <% end %>
-</ul>
-
-<!-- REVIEWS -->
-
-<h3>Reviews</h3>
-<% if current_user && @restaurant.open == true %>
-  <%= link_to "Write a review!", new_restaurant_review_url(@restaurant) %>
-<% end %>
-
-<br><br>
-
-<%= render "reviews/index", :restaurant => @restaurant %>
+</div>
