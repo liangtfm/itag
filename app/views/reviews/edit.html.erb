@@ -1,8 +1,6 @@
-<%= link_to "Back", user_url(current_user) %>
-<h1>Update Review</h1>
-
 <%= render "form", :review => @review %>
 
 <br><br>
 
 <%= button_to "Delete Review", review_url(@review), method: :delete %>
+<%= link_to "Back", user_url(current_user) %>

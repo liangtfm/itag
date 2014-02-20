@@ -2,7 +2,7 @@
 <% method = (restaurant.persisted? ? "put" : "post") %>
 <% message = (restaurant.persisted? ? "Update Restaurant" : "Add Restaurant") %>
 
-<form action="<%= action %>" method="post" enctype="multipart/form-data">
+<form class="form" action="<%= action %>" method="post" enctype="multipart/form-data">
   <input
      name="_method"
      type="hidden"
@@ -12,40 +12,51 @@
      type="hidden"
      value="<%= form_authenticity_token %>">
 
-  <label for="restaurant_name">Restaurant Name</label>
-  <input
-     id="restaurant_name"
-     name="restaurant[name]"
-     type="text"
-     value="<%= @restaurant.name %>">
-  <br>
+ <h1><%= message %></h1>
 
-  <label for="restaurant_category">What type of food is served here?</label>
+  <div class="input">
+    <label for="restaurant_name">Restaurant Name</label>
+    <input
+       id="restaurant_name"
+       name="restaurant[name]"
+       type="text"
+       value="<%= @restaurant.name %>">
+  </div>
+
+  <div class="input">
+    <label for="restaurant_category">What type of food is served here?</label>
+
     <% Category.all.each do |category| %>
-
-      <input id="restaurant_category" name="restaurant[category_ids][]" type="checkbox" value="<%= category.id %>" <%= "checked" if @restaurant.categories.include?(category) %>><%= category.name %></option>
-
+  <ul class="category group">
+     <li><input id="restaurant_category" name="restaurant[category_ids][]" type="checkbox" value="<%= category.id %>" <%= "checked" if @restaurant.categories.include?(category) %>><%= category.name %></option></li>
+  </ul>
     <% end %>
     <input type="hidden" name="restaurant[category_ids][]" value="">
-  <br>
+  </div>
 
-  <label for="restaurant_website">Website</label>
-  <input
-     id="restaurant_website"
-     name="restaurant[website]"
-     type="url"
-     value="<%= @restaurant.website %>">
-  <br>
+  <br><br><br><br>
 
-  <label for="restaurant_phone">Phone Number</label>
-  <input
-     id="restaurant_phone"
-     name="restaurant[phone]"
-     type="text"
-     value="<%= @restaurant.phone %>">
-  <br>
+  <div class="input">
+    <label for="restaurant_website">Website</label>
+    <input
+       id="restaurant_website"
+       name="restaurant[website]"
+       type="url"
+       value="<%= @restaurant.website %>">
+  </div>
 
-  <label for="restaurant_price">Price Range</label>
+  <div class="input">
+    <label for="restaurant_phone">Phone Number</label>
+    <input
+       id="restaurant_phone"
+       name="restaurant[phone]"
+       type="text"
+       value="<%= @restaurant.phone %>">
+  </div>
+
+  <div class="input">
+    <label for="restaurant_price">Price Range</label>
+
   <input
      id="restaurant_price"
      name="restaurant[price]"
@@ -66,55 +77,62 @@
       name="restaurant[price]"
       type="radio"
       value="$$$$" <%= "checked" if @restaurant.price == "$$$$" %> >$$$$</input>
-  <br>
+  </div>
 
-  <label for="restaurant_street">Street</label>
-  <input
-     id="restaurant_street"
-     name="restaurant[street]"
-     type="text"
-     value="<%= @restaurant.street %>">
-  <br>
+  <div class="input">
+    <label for="restaurant_street">Street</label>
+    <input
+       id="restaurant_street"
+       name="restaurant[street]"
+       type="text"
+       value="<%= @restaurant.street %>">
+  </div>
 
-  <label for="restaurant_city">Location</label>
-  <select id="restaurant_city" name="restaurant[city_id]">
-    <% City.all.each do |city| %>
-    <option value="<%= city.id %>" <%= "selected" if @restaurant.city_id == city.id %>><%= city.name %>, <%= city.state.name %></option>
-    <% end %>
-  </select>
-  <br>
+  <div class="input">
+    <label for="restaurant_city">Location</label>
+    <select class="searchSelect" id="restaurant_city" name="restaurant[city_id]">
+      <% City.all.each do |city| %>
+      <option value="<%= city.id %>" <%= "selected" if @restaurant.city_id == city.id %>><%= city.name %>, <%= city.state.name %></option>
+      <% end %>
+    </select>
+  </div>
 
-  <label for="restaurant_zip">Zip Code</label>
-  <input
-     id="restaurant_zip"
-     name="restaurant[zip]"
-     type="text"
-     value="<%= @restaurant.zip %>">
-  <br>
+  <div class="input">
+    <label for="restaurant_zip">Zip Code</label>
+    <input
+       id="restaurant_zip"
+       name="restaurant[zip]"
+       type="text"
+       value="<%= @restaurant.zip %>">
+  </div>
 
-  <label for="restaurant_open">Closed?</label>
-  Yes<input
-     id="restaurant_open"
-     name="restaurant[open]"
-     type="radio"
-     value="false" <%= "checked" if @restaurant.open == false %>>
-   </input>
+  <div class="input">
+    <label for="restaurant_open">Closed?</label>
+    Yes<input
+       id="restaurant_open"
+       name="restaurant[open]"
+       type="radio"
+       value="false" <%= "checked" if @restaurant.open == false %>>
+     </input>
 
-   No<input
-      id="restaurant_open"
-      name="restaurant[open]"
-      type="radio"
-      value="true" <%= "checked" if @restaurant.open == true %>>
-    </input>
-    <br>
+     No<input
+        id="restaurant_open"
+        name="restaurant[open]"
+        type="radio"
+        value="true" <%= "checked" if @restaurant.open == true %>>
+      </input>
+  </div>
 
+  <div class="input">
     <label for="restaurant_photo">Add a photo for this restaurant!</label>
     <input
         id="restaurant_photo"
         name="restaurant[photo]"
         type="file">
-   <br>
+  </div>
 
-  <input type="submit" value="<%= message %>">
+  <div class="submit">
+    <input type="submit" value="<%= message %>">
+  </div>
 </form>
 <br>

@@ -1,6 +1,6 @@
 <div class="content group">
 
-  <h1>
+  <h2>
     <%= @restaurant.name %>
     <%= "(CLOSED)" if @restaurant.open == false %>
     <% if current_user && current_user.admin == true %>
@@ -12,7 +12,7 @@
     <% else %>
       <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post %>
     <% end %>
-  </h1>
+  </h2>
 
   <% if @restaurant.photo.file? %>
     <%= image_tag @restaurant.photo.url(:big) %>
