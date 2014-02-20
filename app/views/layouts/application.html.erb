@@ -8,44 +8,54 @@
 </head>
 <body>
 
-<% if signed_in? %>
-  <ul>
-    <li>Signed in as:
-      <%= link_to current_user.username, user_url(current_user) %>
-      <%= "(admin)" if current_user.admin == true %>
-    </li>
-    <li><%= button_to "Sign Out", session_url, :method => :delete %></li>
-  </ul>
-<% else %>
-  <%= link_to "Sign In", new_session_url %> or
-  <%= link_to "Sign up", new_user_url %>
-<% end %>
+<nav class="group">
+  <div class="container group">
 
-<form id="search" action="<%= search_restaurants_url %>" method="post">
-  <input
-     name="authenticity_token"
-     type="hidden"
-     value="<%= form_authenticity_token %>">
+    <div class="group info">
+      <% if signed_in? %>
+        <ul>
+          <li>Signed in as:
+            <%= link_to current_user.username, user_url(current_user) %>
+            <%= "(admin)" if current_user.admin == true %>
+          </li>
+          <li><%= button_to "Sign Out", session_url, :method => :delete %></li>
+        </ul>
+      <% else %>
+        <%= link_to "Sign In", new_session_url %> or
+        <%= link_to "Sign up", new_user_url %>
+      <% end %>
+    </div>
 
-  <label>Food Type</label>
-  <select name="cat_id">
-  <% Category.all.each do |cat| %>
-    <option value="<%= cat.id %>"><%= cat.name %></option>
-  <% end %>
-  </select>
 
-  <label>City</label>
-  <select name="city_id">
-  <% City.all.each do |city| %>
-    <option value="<%= city.id %>">
-      <%= city.name %>, <%= city.state.name %>
-    </option>
-  <% end %>
-  </select>
+    <a href="<%= cities_url %>"><img width="200" height="70" src=http://i.imgur.com/4XS71Sg.png"></a>
 
-  <input type="submit" value="Find!">
-</form>
-<br>
+
+    <form action="<%= search_url %>" method="post">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <label>Food Type</label>
+      <select name="cat_id">
+      <% Category.all.each do |cat| %>
+        <option value="<%= cat.id %>"><%= cat.name %></option>
+      <% end %>
+      </select>
+
+      <label>City</label>
+      <select name="city_id">
+      <% City.all.each do |city| %>
+        <option value="<%= city.id %>">
+          <%= city.name %>, <%= city.state.name %>
+        </option>
+      <% end %>
+      </select>
+
+      <input id="find" type="submit" value="Find!">
+    </form>
+
+  </div>
+</nav>
+
+
 
 <%= yield %>
 

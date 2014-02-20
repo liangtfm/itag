@@ -1,12 +1,16 @@
 <%= link_to "Back", cities_url %>
-<h1>Sign In</h1>
 
-<form action="<%= session_url %>" method="post">
+
+<form class="sign-in" action="<%= session_url %>" method="post">
+
+  <h1>Welcome!</h1>
+
   <input
      name="authenticity_token"
      type="hidden"
      value="<%= form_authenticity_token %>">
 
+  <div class="input">
   <label for="user_username">Username</label>
   <input
      id="user_username"
@@ -20,6 +24,9 @@
      name="user[password]"
      type="password">
   <br>
+  </div>
 
+  <div class="submit">
   <input type="submit" value="Log in">
+  </div>
 </form>
