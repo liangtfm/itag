@@ -32,11 +32,11 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.includes(:reviews, :categories, :city, :state, :users_who_favorited).find(params[:id])
   end
 
   def index
-    @city = City.find(params[:city_id])
+    @city = City.includes(restaurants: [:reviews]).find(params[:city_id])
     @restaurants = @city.restaurants.sort_by{ |rest| rest.average_rating}.reverse
   end
 
@@ -49,7 +49,7 @@ class RestaurantsController < ApplicationController
   end
 
   def search
-    @restaurants = Restaurant.where("city_id = ?", params[:city_id])
+    @restaurants = Restaurant.includes(:categories).where("city_id = ?", params[:city_id])
 
     @category = Category.find(params[:cat_id])
 

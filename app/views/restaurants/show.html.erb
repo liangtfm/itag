@@ -6,20 +6,17 @@
     <% if current_user && current_user.admin == true %>
       (<%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>)
     <% end %>
-
-    <% if current_user.favorite_places.include?(@restaurant) %>
-      <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete %>
-    <% else %>
-      <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post %>
-    <% end %>
   </h2>
 
-  <% if @restaurant.photo.file? %>
-    <%= image_tag @restaurant.photo.url(:big) %>
-  <% end %>
-  <br>
 
-  Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)<br>
+  <div class="rest-left">
+Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)<br>
+
+  <% if current_user.favorite_places.include?(@restaurant) %>
+    <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete %>
+  <% else %>
+    <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post %>
+  <% end %>
 
   Categories:<br>
   <ul>
@@ -59,5 +56,16 @@
   <br><br>
 
   <%= render "reviews/index", :restaurant => @restaurant %>
+
+  </div>
+
+
+  <!-- IMAGE -->
+
+  <div class="rest-right">
+    <% if @restaurant.photo.file? %>
+      <%= image_tag @restaurant.photo.url(:big) %>
+    <% end %>
+  </div>
 
 </div>

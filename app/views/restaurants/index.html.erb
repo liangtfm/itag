@@ -20,7 +20,9 @@
   <% @restaurants.each do |restaurant| %>
 
   <% if restaurant.photo.file? %>
-    <%= image_tag restaurant.photo.url(:small) %>
+    <a href="<%= restaurant_url(restaurant) %>">
+      <%= image_tag restaurant.photo.url(:small) %>
+    </a>
   <% end %>
 
     <li class="results">

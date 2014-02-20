@@ -72,6 +72,7 @@ nav .container {
   width: 1000px;
   height: 80px;
   margin: 0 auto;
+  background-image: url("http://s3-media1.ak.yelpcdn.com/assets/2/www/img/7ccfbbb81622/structural/header_stars.png");
 }
 
 .logo {
@@ -347,6 +348,46 @@ main {
   USER PROFILE STYLING!
 */
 
+.content h2 {
+  -webkit-appearance: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  display: inline-block;
+}
+
+.prof-left {
+  width: 80%;
+  float: left;
+}
+
+.prof-right {
+  width: 20%;
+  float: right;
+}
+
+
+/*
+  RESTAURANT PROFILE STYLING!
+*/
+
+.content h2 {
+  -webkit-appearance: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  display: inline-block;
+}
+
+.rest-left {
+  width: 80%;
+  float: left;
+}
+
+.rest-right {
+  width: 20%;
+  float: right;
+}
 
 
 /*

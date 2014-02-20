@@ -10,7 +10,7 @@ Itag::Application.routes.draw do
     resources :favorites, :only => [:create, :destroy]
   end
 
-  post 'search' => "restaurants#search"
+  get 'search' => "restaurants#search"
 
   resources :cities, :only => [:show, :index] do
     resources :restaurants, :only => [:index, :new, :create]
