@@ -118,6 +118,9 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.2)
       addressable (~> 2.3)
     listen (2.5.0)
@@ -143,6 +146,10 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     pg (0.17.1)
+    pg_search (0.7.2)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     polyglot (0.3.3)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -234,9 +241,11 @@ DEPENDENCIES
   guard-rspec
   jbuilder
   jquery-rails
+  kaminari
   launchy
   paperclip
   pg
+  pg_search
   rails (= 3.2.16)
   rspec-rails
   sass-rails (~> 3.2.3)
