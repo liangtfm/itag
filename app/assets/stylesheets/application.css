@@ -119,7 +119,6 @@ nav .container {
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 1px rgba(107,0,0,1);
   margin: 5px;
 }
 
@@ -165,7 +164,10 @@ nav .container {
 input[type="text"],
 input[type="username"],
 input[type="password"],
-input[type="submit"] {
+input[type="submit"],
+input[type="email"],
+input[type="url"],
+textarea {
   -webkit-appearance: none;
   display: inline-block;
   margin: 0;
@@ -178,14 +180,14 @@ input[type="submit"] {
   width: auto;
 }
 
-.sign-in {
+.form {
   margin: 0 auto;
-  width: 300px;
+  width: 400px;
   padding: 50px;
   border-radius: 10px;
 }
 
-.sign-in > h1 {
+.form > h1 {
   font-size: 60px;
   font-weight: bold;
   margin: 0 0 20px 0;
@@ -208,8 +210,25 @@ input[type="submit"] {
   border-radius: 5px;
 }
 
+.input > input[type="radio"] {
+  width: auto;
+}
+
+.input > textarea {
+  position: relative;
+  border: 2px solid #000;
+  padding: 5px 10px;
+  width: 250px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.input > input[type="file"] {
+  border: none;
+}
+
 .input > input:focus {
-  border-color: #0b0;
+  -webkit-box-shadow: inset 0 3px 3px rgba(0,0,0,0.15)
 }
 
 .submit {
@@ -218,10 +237,17 @@ input[type="submit"] {
 
 .submit > input {
   position: relative;
+  float: right;
+  background: -webkit-linear-gradient(top, rgba(194,17,1,1) 0%,rgba(107,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
   color: #fff;
   padding: 10px 15px;
+  margin-right: 125px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.submit > input:hover {
+  background: -webkit-linear-gradient(top, rgba(107,0,0,1) 0%,rgba(194,17,1,1) 100%); /* Chrome10+,Safari5.1+ */
 }
 
 /*

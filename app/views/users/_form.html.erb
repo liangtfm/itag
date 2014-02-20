@@ -1,8 +1,8 @@
 <% action = (user.persisted? ? user_url(user) : users_url) %>
 <% method = (user.persisted? ? "put" : "post") %>
-<% message = (user.persisted? ? "Update user" : "Create user") %>
+<% message = (user.persisted? ? "Update!" : "Sign up!") %>
 
-<form action="<%= action %>" method="post" enctype="multipart/form-data">
+<form class="form" action="<%= action %>" method="post" enctype="multipart/form-data">
   <input
      name="_method"
      type="hidden"
@@ -12,71 +12,82 @@
      type="hidden"
      value="<%= form_authenticity_token %>">
 
-  <label for="user_username">Username</label>
-  <input
-     id="user_username"
-     name="user[username]"
-     type="text"
-     value="<%= @user.username %>">
-  <br>
+  <h1><%= message %></h1>
 
+  <div class="input">
+    <label for="user_username">Username</label>
+    <input
+       id="user_username"
+       name="user[username]"
+       type="text"
+       value="<%= @user.username %>">
+
+  </div>
+
+  <div class="input">
   <label for="user_email">Email</label>
   <input
      id="user_email"
      name="user[email]"
      type="email"
      value="<%= @user.email %>">
-  <br>
+  </div>
 
-  <label for="user_password">Password</label>
-  <input
-     id="user_password"
-     name="user[password]"
-     type="password">
-  <br>
+  <div class="input">
+    <label for="user_password">Password</label>
+    <input
+       id="user_password"
+       name="user[password]"
+       type="password">
+   </div>
 
-  <label for="user_bio">Biography</label><br>
-<textarea rows="4"
-          cols="50"
-          id="user_bio"
-          name="user[biography]"><%= @user.biography %></textarea>
-  <br>
+  <div class="input">
+    <label for="user_bio">Biography</label><br>
+<textarea id="user_bio" name="user[biography]"><%= @user.biography %></textarea>
+  </div>
 
+  <div class="input">
   <label for="user_location">Location</label>
   <input
      id="user_location"
      name="user[location]"
      type="text"
      value="<%= @user.location %>">
-  <br>
+  </div>
 
+  <div class="input">
   <label for="user_age">Age</label>
   <input
      id="user_age"
      name="user[age]"
      type="text"
      value="<%= @user.age %>">
-  <br>
+  </div>
 
+  <div class="input">
   <label for="user_gender">Gender</label>
   <input
      id="user_gender"
      name="user[gender]"
      type="radio"
      value="M" <%= "checked" if @user.gender == "M" %> >M</input>
+
    <input
       id="user_gender"
       name="user[gender]"
       type="radio"
       value="F">F</input>
-  <br>
+  </div>
 
-  <label for="user_photo">Upload a photo!</label>
-  <input
-      id="user_photo"
-      name="user[photo]"
-      type="file">
-  <br>
+  <div class="input">
+    <label for="user_photo">Upload a photo!</label>
+    <input
+        id="user_photo"
+        name="user[photo]"
+        type="file">
+  </div>
 
-  <input type="submit" value="<%= message %>">
+  <div class="submit">
+    <input type="submit" value="<%= message %>">
+  </div>
 </form>
