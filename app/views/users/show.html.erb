@@ -3,13 +3,11 @@
   <h1>Welcome to <%= @user.username %>'s Profile!
 
   <% unless current_user == @user %>
-
     <% if current_user.followed_users.include?(@user) %>
       <%= button_to "UNFOLLOW", user_follow_url(@user), method: :delete %>
     <% else %>
       <%= button_to "FOLLOW", user_follows_url(@user), method: :post %>
     <% end %>
-
   <% end %>
 
   </h1>

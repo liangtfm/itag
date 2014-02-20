@@ -1,6 +1,7 @@
 <% restaurant.reviews.each do |review| %>
 
 <strong>"<%= review.title %>"</strong> by <%= link_to review.user.username, user_url(review.user) %>
+
 <br>
 Rating: <%= review.rating %>
 <br>
@@ -20,6 +21,12 @@ Rating: <%= review.rating %>
 
   <% if current_user && current_user.admin == true %>
     <%= button_to "Delete Review", review_url(review), method: :delete %>
+  <% end %>
+
+  <% if review.created_at > Time.now.beginning_of_day %>
+      <br><%="Written #{time_ago_in_words(review.created_at)} ago"%>
+  <% else %>
+      Written on <%= review.created_at.strftime("%m/%d/%Y") %>
   <% end %>
 
 <br><br>

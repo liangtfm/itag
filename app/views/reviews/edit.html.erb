@@ -2,5 +2,10 @@
 
 <br><br>
 
-<%= button_to "Delete Review", review_url(@review), method: :delete %>
-<%= link_to "Back", user_url(current_user) %>
+<div class="button">
+  <%= button_to "Delete Review", review_url(@review), method: :delete %>
+</div>
+
+<div class="button">
+  <%= button_to "Back", user_url(current_user), method: :get %>
+</div>

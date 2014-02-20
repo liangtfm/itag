@@ -16,20 +16,21 @@
   <h2>What's hot in <%= @city.name %>, <%= @city.state.name %></h2>
   <%= link_to "Add a new restaurant", new_city_restaurant_url(@city) %>
 
-  <ul>
+  <ol class="group">
   <% @restaurants.each do |restaurant| %>
 
-    <li>
+  <% if restaurant.photo.file? %>
+    <%= image_tag restaurant.photo.url(:small) %>
+  <% end %>
+
+    <li class="results">
       <a href="<%= restaurant_url(restaurant) %>">
-      <% if restaurant.photo.file? %>
-        <%= image_tag restaurant.photo.url(:small) %>
-      <% end %>
-      <%= restaurant.name %>
+        <%= restaurant.name %>
       </a>
       (Average Rating: <%= restaurant.average_rating %>)
     </li>
 
   <% end %>
-  </ul>
+  </ol>
 
 </div>

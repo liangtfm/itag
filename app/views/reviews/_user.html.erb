@@ -10,5 +10,10 @@ Rating: <%= review.rating %>
 <%= review.title %>
 <br>
 <%= review.body %>
+<% if review.created_at > Time.now.beginning_of_day %>
+    <br><%="Written #{time_ago_in_words(review.created_at)} ago"%>
+<% else %>
+    Written on <%= review.created_at.strftime("%m/%d/%Y") %>
+<% end %>
 <br><br>
 <% end %>
