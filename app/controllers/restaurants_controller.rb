@@ -52,7 +52,9 @@ class RestaurantsController < ApplicationController
   def search
     @results = PgSearch.multisearch(params[:query])
 
-    if Category.all.include?(@results.first.searchable)
+    if @results.empty?
+      return []
+    elsif Category.all.include?(@results.first.searchable)
       @category = @results.first.searchable.restaurants.page(params[:page])
     else
       @restaurants = @results.page(params[:page])

@@ -21,9 +21,8 @@
       </li>
     <% end %>
     </ol>
+    <%= paginate @restaurants %>
   <% else %>
     <%= "No results found!" %>
   <% end %>
-
-  <%= paginate @restaurants %>
 </div>
