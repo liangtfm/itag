@@ -82,7 +82,7 @@ nav form {
 
 .logo {
   float: left;
-  padding: 2px;
+  padding: 0 35px
 }
 
 .search {
@@ -106,32 +106,49 @@ nav form {
   padding-top: 10px;
 }*/
 
-.search select {
+
+.search-box {
+  -webkit-appearance: none;
+  background: #F5F5F1;
+  float: left;
+  border: 2px solid #000;
+  width: 190px;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 15px;
+}
+
+.search-box label {
+  font-weight: bold;
+  line-height: 30px;
+  padding-left: 3px;
+}
+
+.search-box input[type=text] {
+  position: relative;
+  width: 140px;
+  height: 30px;
+  left: 3px;
+}
+
+.search-box select {
+  position: relative;
+  float: right;
   width: 150px;
   height: 30px;
   overflow: hidden;
-  border: 1px solid #ccc;
-}
-
-.searchBox {
   -webkit-appearance: none;
-  background: #fff;
-  float: left;
-  border: 2px solid #000;
-  width: 180px;
-  height: 30px;
-  border-radius: 5px;
+  border: none;
+  background: transparent url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat right center;
+  right: 3px;
 }
 
-.searchBox input[type=text] {
-  width: 140px;
-}
-
-.searchSelect {
-  font-size: 16px;
+.search-select {
+  font-size: 14px;
   background: #fff;
   height: 30px;
 }
+
 
 #find {
   position: relative;
@@ -160,7 +177,7 @@ nav form {
 
 .mini-nav li {
   display: inline-block;
-  padding: 2px 10px;
+  padding: 0px 10px;
   font-size: 14px;
   font-weight: bold;
   color: #fff;

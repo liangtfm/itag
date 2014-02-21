@@ -1,4 +1,4 @@
-<% user.reviews.each do |review| %>
+<% user.reviews.sort_by{ |rev| rev.created_at }.reverse!.each do |review| %>
 
 <div class="prof-review">
 

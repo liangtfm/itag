@@ -39,14 +39,14 @@
       <form class="group" action="<%= search_url %>" method="get">
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <div class="searchBox group">
+      <div class="search-box group">
         <label>Find</label>
         <input type="text" name="query" value="">
       </div>
 
-       <div class="searchBox group">
+      <div class="search-box group">
         <label>In</label>
-        <select name="city_id" class="searchSelect">
+        <select name="city_id" class="search-select">
         <% City.all.each do |city| %>
           <option value="<%= city.id %>">
             <%= city.name %>, <%= city.state.name %>
