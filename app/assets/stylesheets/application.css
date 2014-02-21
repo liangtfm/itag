@@ -98,15 +98,6 @@ nav form {
   width: 100%;
 }
 
-/*.search label {
-  position: relative;
-  font-weight: bold;
-  font-size: 16px;
-  padding-left: 10px;
-  padding-top: 10px;
-}*/
-
-
 .search-box {
   -webkit-appearance: none;
   background: #F5F5F1;
@@ -146,7 +137,7 @@ nav form {
 .search-select {
   font-size: 14px;
   background: #fff;
-  height: 30px;
+  line-height: 30px;
 }
 
 
