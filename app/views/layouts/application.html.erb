@@ -39,13 +39,12 @@
       <form class="group" action="<%= search_url %>" method="get">
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-        <label>Food Type</label>
-        <select name="cat_id" class="searchSelect">
-        <% Category.all.each do |cat| %>
-          <option value="<%= cat.id %>"><%= cat.name %></option>
-        <% end %>
-        </select>
+      <div class="searchBox group">
+        <label>Find</label>
+        <input type="text" name="query" value="">
+      </div>
 
+       <div class="searchBox group">
         <label>In</label>
         <select name="city_id" class="searchSelect">
         <% City.all.each do |city| %>
@@ -54,6 +53,7 @@
           </option>
         <% end %>
         </select>
+      </div>
 
         <input id="find" type="submit" value="Find!">
       </form>
@@ -65,6 +65,7 @@
         <% else %>
           <li><%= link_to "My Profile", new_user_url %></li>
         <% end %>
+        <li>Find Friends</li>
       </ul>
     </div>
 

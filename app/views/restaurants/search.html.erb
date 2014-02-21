@@ -1,26 +1,28 @@
 <div class="content group">
   <h1>SEARCH RESULTS!</h1>
 
-  <% if @restaurants.empty? %>
-    <%= "No results found!" %>
-  <% else %>
-    <ol class="group">
-    <% @restaurants.sort_by{ |rest| rest.average_rating }.reverse!.each do |restaurant| %>
-
-    <% if restaurant.photo.file? %>
-      <%= image_tag restaurant.photo.url(:medium) %>
+  <% if (@category || @restaurants) %>
+    <% if @category %>
+      <% @restaurants = @category %>
+    <% else %>
+      <% @restaurants.map!(&:searchable) %>
     <% end %>
 
+    <ol class="group">
+    <% @restaurants.each do |restaurant| %>
+      <% if restaurant.photo.file? %>
+        <%= image_tag restaurant.photo.url(:medium) %>
+      <% end %>
       <li class="search_results">
         <a href="<%= restaurant_url(restaurant) %>">
-
         <%= restaurant.name %>
         </a>
         (Average Rating: <%= restaurant.average_rating %>)
       </li>
-
     <% end %>
     </ol>
+  <% else %>
+    <%= "No results found!" %>
   <% end %>
 
   <%= paginate @restaurants %>

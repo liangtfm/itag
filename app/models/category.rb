@@ -9,4 +9,8 @@ class Category < ActiveRecord::Base
   has_many :restaurants,
   through: :tags,
   source: :restaurant
+
+  include PgSearch
+    multisearchable :against => [:name]
+
 end

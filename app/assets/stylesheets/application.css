@@ -75,6 +75,11 @@ nav .container {
   background-image: url("http://s3-media1.ak.yelpcdn.com/assets/2/www/img/7ccfbbb81622/structural/header_stars.png");
 }
 
+nav form {
+  padding: 0;
+  margin: 0;
+}
+
 .logo {
   float: left;
   padding: 2px;
@@ -93,22 +98,39 @@ nav .container {
   width: 100%;
 }
 
-.search label {
+/*.search label {
   position: relative;
   font-weight: bold;
   font-size: 16px;
   padding-left: 10px;
-}
+  padding-top: 10px;
+}*/
 
 .search select {
-  width: 180px;
+  width: 150px;
   height: 30px;
   overflow: hidden;
   border: 1px solid #ccc;
 }
 
+.searchBox {
+  -webkit-appearance: none;
+  background: #fff;
+  float: left;
+  border: 2px solid #000;
+  width: 180px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.searchBox input[type=text] {
+  width: 140px;
+}
+
 .searchSelect {
   font-size: 16px;
+  background: #fff;
+  height: 30px;
 }
 
 #find {
@@ -213,6 +235,7 @@ textarea {
 
 .input > input[type="radio"] {
   width: auto;
+  outline: 0;
 }
 
 .input > textarea {

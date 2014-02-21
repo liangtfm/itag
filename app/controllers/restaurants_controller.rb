@@ -50,7 +50,15 @@ class RestaurantsController < ApplicationController
   end
 
   def search
-    @restaurants = Restaurant.includes(:categories).where("city_id = ? AND categories.id = ?", params[:city_id], params[:cat_id]).page(params[:page])
+    @results = PgSearch.multisearch(params[:query])
+
+    if Category.all.include?(@results.first.searchable)
+      @category = @results.first.searchable.restaurants.page(params[:page])
+    else
+      @restaurants = @results.page(params[:page])
+    end
+
+    # @restaurants = Restaurant.includes(:categories).where("city_id = ? AND categories.id = ?", params[:city_id], params[:cat_id]).page(params[:page])
   end
 
 end

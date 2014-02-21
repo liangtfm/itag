@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_signed_in!, :only => [:show]
+  before_filter :require_signed_in!, :only => [:show, :index]
   before_filter :require_signed_out!, :only => [:create, :new]
 
   def new
@@ -37,5 +37,9 @@ class UsersController < ApplicationController
     else
       render :json => @user.errors.full_messages
     end
+  end
+
+  def index
+    @users = User.all.page(params[:page])
   end
 end

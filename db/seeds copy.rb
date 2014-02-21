@@ -47,8 +47,7 @@ Restaurant.create([
     street: "214 E 10th St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "Donguri Restaurant",
     website: "",
@@ -57,8 +56,7 @@ Restaurant.create([
     street: "309 E 83rd St",
     city_id: 1,
     zip: "10028",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "Sushi Yasaka",
     website: "",
@@ -67,8 +65,7 @@ Restaurant.create([
     street: "309 E 83rd St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "Sakagura",
     website: "",
@@ -77,8 +74,7 @@ Restaurant.create([
     street: "309 E 83rd St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "MEW Izakaya",
     website: "",
@@ -87,8 +83,7 @@ Restaurant.create([
     street: "309 E 83rd St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "Cocoron",
     website: "",
@@ -97,8 +92,7 @@ Restaurant.create([
     street: "61 Delancey St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "Kyo Ya",
     website: "",
@@ -107,8 +101,7 @@ Restaurant.create([
     street: "94 E 7th St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "Ootoya",
     website: "",
@@ -117,8 +110,7 @@ Restaurant.create([
     street: "8 W 18th St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "Takashi",
     website: "",
@@ -127,8 +119,7 @@ Restaurant.create([
     street: "456 Hudson St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "Hakata Tonton",
     website: "",
@@ -137,8 +128,7 @@ Restaurant.create([
     street: "61 Grove St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
   {name: "Zenkichi",
     website: "",
@@ -147,25 +137,8 @@ Restaurant.create([
     street: "77 N 6th St",
     city_id: 1,
     zip: "",
-    open: true,
-    category_ids: [10]
+    open: true
   },
 ])
 
 User.create({username: 'ant', password: '123123', email: 'liangtfm@gmail.com', biography: "Hello!", age: 26, gender: "M", location: "NYC", admin: true})
-
-
-100.times do
-
-  Restaurant.create({name: Faker::Company.name,
-    website: "http://"+Faker::Internet.domain_name,
-    price: ["$","$$","$$$","$$$$"].sample,
-    phone: Faker::PhoneNumber.phone_number,
-    street: Faker::Address.street_address,
-    city_id: rand(1..4),
-    zip: Faker::Address.zip_code,
-    open: true,
-    category_ids: rand(1..16)
-  })
-
-end

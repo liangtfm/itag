@@ -13,6 +13,9 @@ class Restaurant < ActiveRecord::Base
 
   paginates_per 5
 
+  include PgSearch
+    multisearchable :against => [:name]
+
   has_many :tags
 
   has_many :categories,
