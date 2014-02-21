@@ -37,7 +37,8 @@ class RestaurantsController < ApplicationController
 
   def index
     @city = City.includes(restaurants: [:reviews]).find(params[:city_id])
-    @restaurants = @city.restaurants.sort_by{ |rest| rest.average_rating}.reverse
+
+    @restaurants = @city.restaurants.page(params[:page])
   end
 
   def destroy
@@ -49,13 +50,7 @@ class RestaurantsController < ApplicationController
   end
 
   def search
-    @restaurants = Restaurant.includes(:categories).where("city_id = ?", params[:city_id])
-
-    @category = Category.find(params[:cat_id])
-
-    @restaurants.select! { |rest| rest.categories.include?(@category) }
-
-    return @restaurants
+    @restaurants = Restaurant.includes(:categories).where("city_id = ? AND categories.id = ?", params[:city_id], params[:cat_id]).page(params[:page])
   end
 
 end

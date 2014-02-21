@@ -1,19 +1,24 @@
 <% user.reviews.each do |review| %>
 
-<strong><%= link_to review.restaurant.name, restaurant_url(review.restaurant) %></strong>
+<div class="prof-review">
+
+<h2><%= link_to review.restaurant.name, restaurant_url(review.restaurant) %></h2>
   <% if current_user == @user %>
     (<%= link_to "Edit Review", edit_review_url(review) %>)
   <% end %>
 <br>
 Rating: <%= review.rating %>
 <br>
-<%= review.title %>
+<strong>"<%= review.title %>"</strong>
 <br>
 <%= review.body %>
 <% if review.created_at > Time.now.beginning_of_day %>
     <br><%="Written #{time_ago_in_words(review.created_at)} ago"%>
 <% else %>
-    Written on <%= review.created_at.strftime("%m/%d/%Y") %>
+    <br>Written on <%= review.created_at.strftime("%m/%d/%Y") %>
 <% end %>
-<br><br>
+</div>
+<br>
+
 <% end %>
+

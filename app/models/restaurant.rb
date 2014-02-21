@@ -11,6 +11,8 @@ class Restaurant < ActiveRecord::Base
     :small => "60x60#"
   }
 
+  paginates_per 5
+
   has_many :tags
 
   has_many :categories,

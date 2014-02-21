@@ -5,7 +5,7 @@
     <%= "No results found!" %>
   <% else %>
     <ol class="group">
-    <% @restaurants.each do |restaurant| %>
+    <% @restaurants.sort_by{ |rest| rest.average_rating }.reverse!.each do |restaurant| %>
 
     <% if restaurant.photo.file? %>
       <%= image_tag restaurant.photo.url(:medium) %>
@@ -22,4 +22,6 @@
     <% end %>
     </ol>
   <% end %>
+
+  <%= paginate @restaurants %>
 </div>

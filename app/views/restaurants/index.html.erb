@@ -17,7 +17,7 @@
   <%= link_to "Add a new restaurant", new_city_restaurant_url(@city) %>
 
   <ol class="group">
-  <% @restaurants.each do |restaurant| %>
+  <% @restaurants.sort_by{ |rest| rest.average_rating }.reverse!.each do |restaurant| %>
 
   <% if restaurant.photo.file? %>
     <a href="<%= restaurant_url(restaurant) %>">
@@ -34,5 +34,7 @@
 
   <% end %>
   </ol>
+
+  <%= paginate @restaurants %>
 
 </div>

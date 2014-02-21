@@ -1,15 +1,21 @@
-<div class="content group">
+<div class="rest-content group">
 
-  <h2>
-    <%= @restaurant.name %>
-    <%= "(CLOSED)" if @restaurant.open == false %>
+
+
+
+  <div class="rest-left group">
+    <div class="rest-info">
+
+    <h2>
+      <%= @restaurant.name %>
+      <%= "(CLOSED)" if @restaurant.open == false %>
+    </h2>
+
     <% if current_user && current_user.admin == true %>
       (<%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>)
     <% end %>
-  </h2>
+    <br>
 
-
-  <div class="rest-left">
 Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)<br>
 
   <% if current_user.favorite_places.include?(@restaurant) %>
@@ -57,12 +63,13 @@ Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count
 
   <%= render "reviews/index", :restaurant => @restaurant %>
 
+    </div>
   </div>
 
 
   <!-- IMAGE -->
 
-  <div class="rest-right">
+  <div class="rest-right group">
     <% if @restaurant.photo.file? %>
       <%= image_tag @restaurant.photo.url(:big) %>
     <% end %>
