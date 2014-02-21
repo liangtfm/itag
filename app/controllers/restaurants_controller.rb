@@ -55,7 +55,7 @@ class RestaurantsController < ApplicationController
     if @results.empty?
       return []
     elsif Category.all.include?(@results.first.searchable)
-      @category = @results.first.searchable.restaurants.page(params[:page])
+      @category = @results.first.searchable.restaurants.where("city_id = ?", params[:city_id]).page(params[:page])
     else
       @restaurants = @results.page(params[:page])
     end
