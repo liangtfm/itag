@@ -24,12 +24,13 @@
       <%= image_tag restaurant.photo.url(:small) %>
     </a>
   <% end %>
+
     <li class="results">
       <%= (5*(@restaurants.current_page-1))+i+1 %>.
       <a href="<%= restaurant_url(restaurant) %>">
         <%= restaurant.name %>
       </a>
-      (Average Rating: <%= restaurant.average_rating.to_f.round(1) %>)
+      (Average Rating: <%= restaurant.average_rating %>)
     </li>
 
   <% end %>

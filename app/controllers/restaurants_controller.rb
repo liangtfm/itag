@@ -38,12 +38,16 @@ class RestaurantsController < ApplicationController
   def index
     @city = City.find(params[:city_id])
 
-    @restaurants = @city.restaurants.select("restaurants.*, AVG(reviews.rating) AS average_rating")
-                        .joins("LEFT OUTER JOIN reviews ON reviews.restaurant_id = restaurants.id")
-                        .group("restaurants.id")
-                        .order("average_rating")
-                        .page(params[:page])
-                        .per(5)
+    @restaurants = @city.restaurants.sort!{ |a, b| a.average_rating <=> b.average_rating }.reverse!
+
+    @restaurants = Kaminari.paginate_array(@restaurants).page(params[:page]).per(5)
+
+                        # .select("restaurants.*, AVG(reviews.rating) AS avg_rating")
+                        # .joins("LEFT JOIN reviews ON reviews.restaurant_id = restaurants.id")
+                        # .group("restaurants.id")
+                        # .order("avg_rating DESC")
+                        # .page(params[:page])
+                        # .per(5)
   end
 
   def destroy
