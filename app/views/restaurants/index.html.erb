@@ -30,7 +30,7 @@
       <a href="<%= restaurant_url(restaurant) %>">
         <%= restaurant.name %>
       </a>
-      (Average Rating: <%= restaurant.average_rating %>)
+      (Average Rating: <%= restaurant.avg_rating.to_f.round(1) %>)
     </li>
 
   <% end %>
