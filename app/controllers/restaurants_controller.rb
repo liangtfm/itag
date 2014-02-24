@@ -36,9 +36,14 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    @city = City.includes(restaurants: [:reviews]).find(params[:city_id])
+    @city = City.find(params[:city_id])
 
-    @restaurants = @city.restaurants.page(params[:page])
+    @restaurants = @city.restaurants.select("restaurants.*, AVG(reviews.rating) AS average_rating")
+                        .joins("LEFT OUTER JOIN reviews ON reviews.restaurant_id = restaurants.id")
+                        .group("restaurants.id")
+                        .order("average_rating")
+                        .page(params[:page])
+                        .per(5)
   end
 
   def destroy
@@ -55,9 +60,13 @@ class RestaurantsController < ApplicationController
     if @results.empty?
       return []
     elsif Category.all.include?(@results.first.searchable)
-      @category = @results.first.searchable.restaurants.where("city_id = ?", params[:city_id]).page(params[:page])
+      @category = @results.first.searchable.restaurants.where("city_id = ?", params[:city_id]).sort!{ |a, b| a.average_rating <=> b.average_rating }.reverse!
+
+      @restaurants = Kaminari.paginate_array(@category).page(params[:page]).per(10)
     else
-      @restaurants = @results.page(params[:page])
+      @restaurants = @results.map(&:searchable).sort!{ |a, b| a.average_rating <=> b.average_rating }.reverse!
+
+      @restaurants = Kaminari.paginate_array(@restaurants).page(params[:page]).per(10)
     end
 
     # @restaurants = Restaurant.includes(:categories).where("city_id = ? AND categories.id = ?", params[:city_id], params[:cat_id]).page(params[:page])

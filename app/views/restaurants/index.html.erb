@@ -13,23 +13,23 @@
 
 <div class="content group">
 
-  <h2>What's hot in <%= @city.name %>, <%= @city.state.name %></h2>
+  <h2>What's popular in <%= @city.name %>, <%= @city.state.name %></h2>
   <%= link_to "Add a new restaurant", new_city_restaurant_url(@city) %>
 
   <ol class="group">
-  <% @restaurants.sort_by{ |rest| rest.average_rating }.reverse!.each do |restaurant| %>
+  <% @restaurants.each_with_index do |restaurant, i| %>
 
   <% if restaurant.photo.file? %>
     <a href="<%= restaurant_url(restaurant) %>">
       <%= image_tag restaurant.photo.url(:small) %>
     </a>
   <% end %>
-
     <li class="results">
+      <%= (5*(@restaurants.current_page-1))+i+1 %>.
       <a href="<%= restaurant_url(restaurant) %>">
         <%= restaurant.name %>
       </a>
-      (Average Rating: <%= restaurant.average_rating %>)
+      (Average Rating: <%= restaurant.average_rating.to_f.round(1) %>)
     </li>
 
   <% end %>

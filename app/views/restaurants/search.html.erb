@@ -2,18 +2,14 @@
   <h1>SEARCH RESULTS!</h1>
 
   <% if (!@category.nil? || !@restaurants.nil?) %>
-    <% if @category %>
-      <% @restaurants = @category %>
-    <% elsif @restaurants %>
-      <% @restaurants.map!(&:searchable) %>
-    <% end %>
 
     <ol class="group">
-    <% @restaurants.each do |restaurant| %>
+    <% @restaurants.each_with_index do |restaurant, i| %>
       <% if restaurant.photo.file? %>
         <%= image_tag restaurant.photo.url(:medium) %>
       <% end %>
       <li class="search_results">
+        <%= (10*(@restaurants.current_page-1))+i+1 %>.
         <a href="<%= restaurant_url(restaurant) %>">
         <%= restaurant.name %>
         </a>
@@ -22,6 +18,7 @@
     <% end %>
     </ol>
     <%= paginate @restaurants %>
+
   <% else %>
     <%= "No results found!" %>
   <% end %>
