@@ -61,11 +61,11 @@
       </form>
 
       <ul class="mini-nav group">
-        <li><%= link_to "Home", cities_url %></li>
+        <%= link_to "<li>Home</li>".html_safe, cities_url %>
         <% if signed_in? %>
-          <li><%= link_to "My Profile", user_url(current_user)%></li>
+          <%= link_to "<li>My Profile</li>".html_safe, user_url(current_user)%></li>
         <% else %>
-          <li><%= link_to "My Profile", new_user_url %></li>
+          <%= link_to "<li>My Profile</li>".html_safe, new_user_url %></li>
         <% end %>
         <li>Find Friends</li>
       </ul>

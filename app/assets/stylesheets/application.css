@@ -88,6 +88,7 @@ nav form {
 .search {
   float: left;
   padding-left: 25px;
+  margin-top: 4px;
 }
 
 .search form {
@@ -166,13 +167,14 @@ nav form {
 }
 
 .mini-nav a {
+  display: block;
   color: #fff;
   text-decoration: none;
 }
 
 .mini-nav li {
-  display: inline-block;
-  padding: 0px 10px;
+  display: block;
+  padding: 3px 6px;
   font-size: 14px;
   font-weight: bold;
   color: #fff;
