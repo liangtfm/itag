@@ -2,7 +2,7 @@
 
 <div class="prof-review">
 
-<h2><%= link_to review.restaurant.name, restaurant_url(review.restaurant) %></h2>
+<h4><%= link_to review.restaurant.name, restaurant_url(review.restaurant) %></h4>
   <% if current_user == @user %>
     (<%= link_to "Edit Review", edit_review_url(review) %>)
   <% end %>

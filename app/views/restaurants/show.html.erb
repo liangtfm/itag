@@ -70,9 +70,16 @@ Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count
   <!-- IMAGE -->
 
   <div class="rest-right group">
+
+    <div class="google-maps">
+
+    </div>
+
+    <div class="rest-photo">
     <% if @restaurant.photo.file? %>
       <%= image_tag @restaurant.photo.url(:big) %>
     <% end %>
+    </div>
   </div>
 
 </div>

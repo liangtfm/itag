@@ -50,13 +50,18 @@ html, body, form, h1, div, label, ul {
   NAV BAR
 */
 
+header {
+  background: -webkit-linear-gradient(top, rgba(194,17,1,1) 0%,rgba(185,12,3,1) 44%,rgba(176,7,6,1) 100%); /* Chrome10+,Safari5.1+ */
+}
+
 .top-nav {
   position: relative;
   width: 100%;
   height: 80px;
-  background: -webkit-linear-gradient(top, rgba(194,17,1,1) 0%,rgba(185,12,3,1) 44%,rgba(176,7,6,1) 100%); /* Chrome10+,Safari5.1+ */
+  margin: auto;
   border-bottom: 1px solid black;
   box-shadow: 1px 1px 3px gray;
+  background-image: url("http://s3-media1.ak.yelpcdn.com/assets/2/www/img/7ccfbbb81622/structural/header_stars.png");
 }
 
 .info {
@@ -72,7 +77,6 @@ nav .container {
   width: 1000px;
   height: 80px;
   margin: 0 auto;
-  background-image: url("http://s3-media1.ak.yelpcdn.com/assets/2/www/img/7ccfbbb81622/structural/header_stars.png");
 }
 
 nav form {
@@ -253,6 +257,7 @@ textarea {
 }
 
 .input > textarea {
+  margin-top: -15px;
   position: relative;
   border: 2px solid #000;
   padding: 5px 10px;
@@ -272,7 +277,7 @@ textarea {
 }
 
 .input > input:focus {
-  -webkit-box-shadow: inset 5px 5px 1px #C4DBF0;
+  outline: 1px solid #C4DBF0;
 }
 
 .submit {
@@ -364,25 +369,10 @@ main {
 }
 
 .content img {
+  display: block;
   position: relative;
   float: left;
 }
-
-/*.content input[type=submit] {
-  position: relative;
-  float: left;
-  background: -webkit-linear-gradient(top, rgba(194,17,1,1) 0%,rgba(107,0,0,1) 100%);
-  color: #fff;
-  padding: 5px 10px;
-  margin-right: 125px;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.content input[type=submit]:hover {
-  background: -webkit-linear-gradient(top, rgba(107,0,0,1) 0%,rgba(194,17,1,1) 100%);
-}
-*/
 
 
 /*
@@ -395,10 +385,20 @@ main {
 }
 
 .prof-content h2 {
-  padding-bottom: 10px;
-  margin: 0;
-  width: auto;
   display: inline-block;
+  width: auto;
+  padding-bottom: 25px;
+  margin: 0;
+  font-size: 48px;
+}
+
+.prof-content h4 {
+  display: inline-block;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size:24px;
 }
 
 .prof-left {
@@ -420,6 +420,13 @@ main {
 
 .prof-content ul {
   list-style: none;
+}
+
+.prof-mid h3 {
+  display: block;
+  font-size: 32px;
+  padding-left: 25px;
+  margin: 0;
 }
 
 .prof-review {

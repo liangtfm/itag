@@ -8,71 +8,72 @@
 </head>
 <body>
 
-<nav class="top-nav group">
-  <div class="container group">
+<header>
+  <nav class="top-nav group">
+    <div class="container group">
 
-
-    <div class="info">
-      <ul>
-        <strong>
-        <% if signed_in? %>
-          <li>User:
-            <%= link_to current_user.username, user_url(current_user) %>
-            <%= "(admin)" if current_user.admin == true %>
-          </li>
-          <li><%= link_to "Sign Out", session_url, :method => :delete %></li>
-        <% else %>
-          <li><%= link_to "Sign In", new_session_url %></li>
-          <li><%= link_to "Sign up", new_user_url %></li>
-        <% end %>
-        </strong>
-      </ul>
-    </div>
-
-    <div class="logo">
-      <a href="<%= cities_url %>">
-        <img src="http://i.imgur.com/juvmlpu.png">
-      </a>
-    </div>
-
-    <div class="search group">
-      <form class="group" action="<%= search_url %>" method="get">
-        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <div class="search-box group">
-        <label>Find</label>
-        <input type="text" name="query" value="">
+      <div class="info">
+        <ul>
+          <strong>
+          <% if signed_in? %>
+            <li>User:
+              <%= link_to current_user.username, user_url(current_user) %>
+              <%= "(admin)" if current_user.admin == true %>
+            </li>
+            <li><%= link_to "Sign Out", session_url, :method => :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign In", new_session_url %></li>
+            <li><%= link_to "Sign up", new_user_url %></li>
+          <% end %>
+          </strong>
+        </ul>
       </div>
 
-      <div class="search-box group">
-        <label>In</label>
-        <select name="city_id" class="search-select">
-        <% City.all.each do |city| %>
-          <option value="<%= city.id %>">
-            <%= city.name %>, <%= city.state.name %>
-          </option>
-        <% end %>
-        </select>
+      <div class="logo">
+        <a href="<%= cities_url %>">
+          <img src="http://i.imgur.com/juvmlpu.png">
+        </a>
       </div>
 
-      <div class="search-submit group">
-        <input id="find" type="submit" value="Find!">
-      </div>
-      </form>
+      <div class="search group">
+        <form class="group" action="<%= search_url %>" method="get">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <ul class="mini-nav group">
-        <%= link_to "<li>Home</li>".html_safe, cities_url %>
-        <% if signed_in? %>
-          <%= link_to "<li>My Profile</li>".html_safe, user_url(current_user)%></li>
-        <% else %>
-          <%= link_to "<li>My Profile</li>".html_safe, new_user_url %></li>
-        <% end %>
-        <li>Find Friends</li>
-      </ul>
+        <div class="search-box group">
+          <label>Find</label>
+          <input type="text" name="query" value="">
+        </div>
+
+        <div class="search-box group">
+          <label>In</label>
+          <select name="city_id" class="search-select">
+          <% City.all.each do |city| %>
+            <option value="<%= city.id %>">
+              <%= city.name %>, <%= city.state.name %>
+            </option>
+          <% end %>
+          </select>
+        </div>
+
+        <div class="search-submit group">
+          <input id="find" type="submit" value="Find!">
+        </div>
+        </form>
+
+        <ul class="mini-nav group">
+          <%= link_to "<li>Home</li>".html_safe, cities_url %>
+          <% if signed_in? %>
+            <%= link_to "<li>My Profile</li>".html_safe, user_url(current_user)%></li>
+          <% else %>
+            <%= link_to "<li>My Profile</li>".html_safe, new_user_url %></li>
+          <% end %>
+          <li>Find Friends</li>
+        </ul>
+      </div>
+
     </div>
-
-  </div>
-</nav>
+  </nav>
+</header>
 
 <main>
   <div class="main group">
