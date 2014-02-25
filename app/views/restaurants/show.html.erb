@@ -50,21 +50,25 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <%= "(CLOSED)" if @restaurant.open == false %>
     </h2>
 
-    <br>
     <% if current_user && current_user.admin == true %>
       (<%= link_to "Edit Listing", edit_restaurant_url(@restaurant) %>)
     <% end %>
     <br>
 
-Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)<br>
-
   <% if current_user.favorite_places.include?(@restaurant) %>
-    <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete %>
+    <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete, form_class: "favorite-button grad_button" %>
   <% else %>
-    <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post %>
+    <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post, form_class: "favorite-button grad_button" %>
   <% end %>
 
-  Categories:<br>
+  <br>
+
+  Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count %> reviews)
+
+  <br>
+
+  Categories:
+  <br>
   <ul>
   <% @restaurant.categories.each do |category| %>
     <li><%= category.name %></li>
@@ -93,11 +97,12 @@ Average Rating: <%= @restaurant.average_rating %> (<%= @restaurant.reviews.count
   <!-- REVIEWS -->
 
   <h3>Reviews</h3>
+
   <% if current_user && @restaurant.open == true %>
     <%= link_to "Write a review!", new_restaurant_review_url(@restaurant) %>
   <% end %>
 
-  <br><br>
+  <br>
 
   <%= render "reviews/index", :restaurant => @restaurant %>
 

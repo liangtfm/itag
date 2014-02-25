@@ -60,9 +60,14 @@ class RestaurantsController < ApplicationController
     if @results.empty?
       return []
     elsif Category.all.include?(@results.first.searchable)
-      @category = @results.first.searchable.restaurants.where("city_id = ?", params[:city_id]).sort!{ |a, b| a.average_rating <=> b.average_rating }.reverse!
+      @category = @results.first.searchable
+        .restaurants.where("city_id = ?", params[:city_id])
+        .sort!{ |a, b| a.average_rating <=> b.average_rating }
+        .reverse!
 
-      @restaurants = Kaminari.paginate_array(@category).page(params[:page]).per(10)
+      @restaurants = Kaminari.paginate_array(@category)
+                             .page(params[:page])
+                             .per(10)
     else
       @restaurants = @results.map(&:searchable).sort!{ |a, b| a.average_rating <=> b.average_rating }.reverse!
 

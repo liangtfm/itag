@@ -18,9 +18,9 @@
 
     <% unless current_user == @user %>
       <% if current_user.followed_users.include?(@user) %>
-        <%= button_to "UNFOLLOW", user_follow_url(@user), method: :delete %>
+        <%= button_to "UNFOLLOW", user_follow_url(@user), method: :delete, form_class: "follow-button grad_button" %>
       <% else %>
-        <%= button_to "FOLLOW", user_follows_url(@user), method: :post %>
+        <%= button_to "FOLLOW", user_follows_url(@user), method: :post, form_class: "follow-button grad_button" %>
       <% end %>
     <% end %>
 

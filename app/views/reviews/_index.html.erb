@@ -1,33 +1,39 @@
 <% restaurant.reviews.sort_by{ |rev| rev.created_at }.reverse!.each do |review| %>
 
-<strong>"<%= review.title %>"</strong> by <%= link_to review.user.username, user_url(review.user) %>
+<div class="review">
 
-<br>
-Rating: <%= review.rating %>
-<br>
-<%= review.body %>
+  <strong>"<%= review.title %>"</strong> by <%= link_to review.user.username, user_url(review.user) %>
 
-<% unless current_user == review.user %>
-  <% if current_user.voted_reviews.include?(review) %>
-    <%= button_to "UNCOOL REVIEW!", review_vote_tag_url(review), method: :delete %>
-  <% else %>
-    <%= button_to "COOL REVIEW!", review_vote_tags_url(review), method: :post %>
-  <% end %>
-<% end %>
+  <br>
+  Rating: <%= review.rating %>
+  <br>
+  <div class="review-body">
+  <%= review.body %>
+  </div>
 
-  <% unless review.vote_tags.empty? %>
-  (<%= review.vote_tags.count %>)
-  <% end %>
-
-  <% if current_user && current_user.admin == true %>
-    <%= button_to "Delete Review", review_url(review), method: :delete %>
+  <% unless current_user == review.user %>
+    <% if current_user.voted_reviews.include?(review) %>
+      <%= button_to "UNCOOL REVIEW!", review_vote_tag_url(review), method: :delete %>
+    <% else %>
+      <%= button_to "COOL REVIEW!", review_vote_tags_url(review), method: :post %>
+    <% end %>
   <% end %>
 
-  <% if review.created_at > Time.now.beginning_of_day %>
-      <br><%="Written #{time_ago_in_words(review.created_at)} ago"%>
-  <% else %>
-      Written on <%= review.created_at.strftime("%m/%d/%Y") %>
-  <% end %>
+    <% unless review.vote_tags.empty? %>
+    (<%= review.vote_tags.count %>)
+    <% end %>
 
-<br><br>
+    <% if current_user && current_user.admin == true %>
+      <%= button_to "Delete Review", review_url(review), method: :delete %>
+    <% end %>
+
+    <% if review.created_at > Time.now.beginning_of_day %>
+        <br><%="Written #{time_ago_in_words(review.created_at)} ago"%>
+    <% else %>
+        Written on <%= review.created_at.strftime("%m/%d/%Y") %>
+    <% end %>
+
+  <br><br>
+
+</div>
 <% end %>
