@@ -1,12 +1,6 @@
-<% restaurant.reviews.sort_by{ |rev| rev.created_at }.reverse!.each do |review| %>
-
 <div class="review">
 
-  <strong>"<%= review.title %>"</strong> by <%= link_to review.user.username, user_url(review.user) %> <% if review.created_at > Time.now.beginning_of_day %>
-        <%="(written #{time_ago_in_words(review.created_at)} ago)"%>
-    <% else %>
-        <%= review.created_at.strftime("(%m/%d/%Y)") %>
-    <% end %>
+  <strong>"<%= review.title %>"</strong> by <%= link_to review.user.username, user_url(review.user) %>
 
   <br>
   Rating: <%= review.rating %>
@@ -16,7 +10,7 @@
   </div>
 
   <% if current_user && current_user.admin == true %>
-    <%= button_to "Delete Review", review_url(review), method: :delete, form_class: "delete-review" %>
+    <%= button_to "Delete review", review_url(review), method: :delete, form_class: "delete-review" %>
   <% end %>
 
   <% unless current_user == review.user %>
@@ -34,4 +28,3 @@
     <% end %>
 
 </div>
-<% end %>

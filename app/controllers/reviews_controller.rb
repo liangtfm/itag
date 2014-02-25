@@ -12,12 +12,17 @@ class ReviewsController < ApplicationController
   def create
     @review = current_user.reviews.new(params[:review])
     @review.restaurant_id = params[:restaurant_id]
+    @review.save
 
-    if @review.save
-      redirect_to restaurant_url(@review.restaurant)
+    if request.xhr?
+      render partial: "jsform", locals: {review: @review}
     else
-      render json: @review.errors.full_messages
+      redirect_to restaurant_url(@review.restaurant)
     end
+
+    # else
+    #   render json: @review.errors.full_messages
+    # end
   end
 
   def show
@@ -45,6 +50,6 @@ class ReviewsController < ApplicationController
   def destroy
     @review = current_user.reviews.find(params[:id])
     @review.destroy
-    redirect_to user_url(@review.user)
+    redirect_to restaurant_url(@review.restaurant)
   end
 end
