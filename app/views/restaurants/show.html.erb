@@ -35,6 +35,7 @@ $(document).ready(function(){
 
     // We want the data passed in to be a single rendered partial.
     // That way we can easily prepend it to the container tag.
+    $('#submit').attr('disabled', 'true');
     window.modal.hide();
     $(".reviews").prepend(data);
     $(".show-modal").remove();
@@ -200,7 +201,7 @@ $(document).ready(function(){
       </div>
 
        <div class="submit">
-        <input type="submit" value="Create review!">
+        <input id="submit" type="submit" value="Create review!">
        </div>
       </form>
 
