@@ -19,11 +19,13 @@
   <ol class="group">
   <% @restaurants.each_with_index do |restaurant, i| %>
 
-  <% if restaurant.photo.file? %>
-    <a href="<%= restaurant_url(restaurant) %>">
+  <a href="<%= restaurant_url(restaurant) %>">
+    <% if restaurant.photo.file? %>
       <%= image_tag restaurant.photo.url(:small) %>
-    </a>
-  <% end %>
+    <% else %>
+      <%= image_tag "http://i.imgur.com/xqtsqlj.png", size: "60x60" %>
+    <% end %>
+  </a>
 
     <li class="results">
       <%= (5*(@restaurants.current_page-1))+i+1 %>.

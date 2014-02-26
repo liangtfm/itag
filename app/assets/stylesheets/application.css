@@ -549,6 +549,7 @@ main {
   display: block;
   position: relative;
   float: left;
+  margin-left: 15px;
 }
 
 
