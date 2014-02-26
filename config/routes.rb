@@ -20,6 +20,8 @@ Itag::Application.routes.draw do
     resources :vote_tags, :only => [:create, :destroy]
   end
 
+  get '/auth/:provider/callback', to: 'sessions#create'
+
   root :to => "cities#index"
 
   # The priority is based upon order of creation:
