@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :email, :biography, :age, :gender, :location, :admin, :session_token, :photo
+  attr_accessible :username, :password, :email, :biography, :age, :gender, :location, :admin, :session_token, :photo, :uid, :provider, :image, :password_digest
   attr_reader :password
 
   before_validation :ensure_session_token
@@ -49,6 +49,41 @@ class User < ActiveRecord::Base
   has_many :voted_reviews,
   through: :vote_tags,
   source: :review
+
+  def self.find_uid_or_create(auth)
+
+    user = User.find_by_uid(auth[:uid])
+
+
+
+    unless user
+      if auth[:provider] == 'facebook'
+        user = User.create!(
+                 uid: auth[:uid],
+                 provider: auth[:provider],
+                 username: auth[:info][:nickname],
+                 email: auth[:info][:email],
+                 image: auth[:info][:image].gsub("_q", "_n"),
+                 password_digest: SecureRandom::urlsafe_base64(16)
+               )
+      elsif auth[:provider] == 'twitter'
+        user = User.create!(
+                 uid: auth[:uid],
+                 provider: auth[:provider],
+                 username: auth[:info][:nickname],
+                 email: "fillmein@now.com",
+                 image: auth[:info][:image].gsub("_normal", ""),
+                 password_digest: SecureRandom::urlsafe_base64(16)
+               )
+      else
+        #asdf
+      end
+    end
+
+    return user
+
+    fail
+  end
 
 
   def self.find_by_credentials(username, password)

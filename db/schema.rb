@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140221165252) do
+ActiveRecord::Schema.define(:version => 20140226153258) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -120,9 +120,14 @@ ActiveRecord::Schema.define(:version => 20140221165252) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["provider"], :name => "index_users_on_provider"
+  add_index "users", ["uid"], :name => "index_users_on_uid"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "vote_tags", :force => true do |t|

@@ -6,9 +6,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_credentials(
-      params[:user][:username],
-      params[:user][:password])
+
+    if request.env['omniauth.auth']
+      user = User.find_uid_or_create(request.env['omniauth.auth'])
+    else
+      user = User.find_by_credentials(
+        params[:user][:username],
+        params[:user][:password])
+    end
 
     if user
       sign_in(user)

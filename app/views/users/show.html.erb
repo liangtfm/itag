@@ -8,6 +8,9 @@
 
     <% if @user.photo.file? %>
       <%= image_tag @user.photo.url(:big) %>
+    <% elsif @user.image? %>
+      <%= image_tag @user.image, size: "100x100" %>
+    <% else %>
     <% end %>
 
     <br>
@@ -25,17 +28,17 @@
     <% end %>
 
     <ul>
-      <% unless @user.location.empty? %>
+
         <li>Hometown: <%= @user.location %> </li>
-      <% end %>
 
-      <% if @user.age %>
+
+
         <li>Age: <%= @user.age %> </li>
-      <% end %>
 
-      <% if @user.gender %>
+
+
         <li>Gender: <%= @user.gender %> </li>
-      <% end %>
+
     </ul>
 
     <h3>Biography:</h3>
