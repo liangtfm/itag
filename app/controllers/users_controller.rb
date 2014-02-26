@@ -40,6 +40,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.page(params[:page])
+    @users = Kaminari.paginate_array(User.all).page(params[:page])
   end
 end

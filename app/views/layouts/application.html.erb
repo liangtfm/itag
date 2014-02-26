@@ -32,7 +32,7 @@
       </div>
 
       <div class="logo">
-        <a href="<%= cities_url %>">
+        <a href="/">
           <img src="http://i.imgur.com/juvmlpu.png">
         </a>
       </div>
@@ -63,13 +63,13 @@
         </form>
 
         <ul class="mini-nav group">
-          <%= link_to "<li>Home</li>".html_safe, cities_url %>
+          <%= link_to "<li>Home</li>".html_safe, "/" %>
           <% if signed_in? %>
-            <%= link_to "<li>My Profile</li>".html_safe, user_url(current_user)%></li>
+            <%= link_to "<li>My Profile</li>".html_safe, user_url(current_user)%>
           <% else %>
-            <%= link_to "<li>My Profile</li>".html_safe, new_user_url %></li>
+            <%= link_to "<li>My Profile</li>".html_safe, new_session_url %>
           <% end %>
-          <li>Find Friends</li>
+            <%= link_to "<li>Find Friends</li>".html_safe, users_url %>
         </ul>
       </div>
 

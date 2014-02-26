@@ -48,8 +48,14 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = current_user.reviews.find(params[:id])
-    @review.destroy
-    redirect_to restaurant_url(@review.restaurant)
+    @review = Review.find(params[:id])
+
+    if (current_user.admin == true && !current_user.reviews.include?(@review))
+      @review.destroy
+      redirect_to restaurant_url(@review.restaurant)
+    else
+      @review.destroy
+      redirect_to user_url(@review.user)
+    end
   end
 end
