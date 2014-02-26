@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :email, :biography, :age, :gender, :location, :admin, :session_token, :photo, :uid, :provider, :image, :password_digest
+  attr_accessible :username, :password, :email, :biography, :age, :gender, :location, :admin, :session_token, :photo, :uid, :provider, :image
   attr_reader :password
 
   before_validation :ensure_session_token
@@ -14,13 +14,15 @@ class User < ActiveRecord::Base
     :small => "60x60#"
   }
 
-  has_many :reviews
+  has_many :reviews,
+  dependent: :destroy
 
   has_many :rated_restaurants,
   through: :reviews,
   source: :restaurant
 
-  has_many :favorites
+  has_many :favorites,
+  dependent: :destroy
 
   has_many :favorite_places,
   through: :favorites,
@@ -29,12 +31,14 @@ class User < ActiveRecord::Base
   has_many :follows,
   class_name: "Follow",
   foreign_key: :followed_id,
-  primary_key: :id
+  primary_key: :id,
+  dependent: :destroy
 
   has_many :followed,
   class_name: "Follow",
   foreign_key: :follower_id,
-  primary_key: :id
+  primary_key: :id,
+  dependent: :destroy
 
   has_many :followers,
   through: :follows,
@@ -44,7 +48,8 @@ class User < ActiveRecord::Base
   through: :followed,
   source: :followed
 
-  has_many :vote_tags
+  has_many :vote_tags,
+  dependent: :destroy
 
   has_many :voted_reviews,
   through: :vote_tags,
@@ -54,26 +59,24 @@ class User < ActiveRecord::Base
 
     user = User.find_by_uid(auth[:uid])
 
-
-
     unless user
       if auth[:provider] == 'facebook'
         user = User.create!(
                  uid: auth[:uid],
                  provider: auth[:provider],
-                 username: auth[:info][:nickname],
+                 username: (auth[:info][:nickname] || auth[:info][:first_name]+rand(1..1000).to_s),
                  email: auth[:info][:email],
-                 image: auth[:info][:image].gsub("_q", "_n"),
-                 password_digest: SecureRandom::urlsafe_base64(16)
+                 image: auth[:info][:image] + "?type=large",
+                 password: SecureRandom::urlsafe_base64(16)
                )
       elsif auth[:provider] == 'twitter'
         user = User.create!(
                  uid: auth[:uid],
                  provider: auth[:provider],
                  username: auth[:info][:nickname],
-                 email: "fillmein@now.com",
+                 email: "fillmein@right.meow",
                  image: auth[:info][:image].gsub("_normal", ""),
-                 password_digest: SecureRandom::urlsafe_base64(16)
+                 password: SecureRandom::urlsafe_base64(16)
                )
       else
         #asdf
@@ -81,13 +84,11 @@ class User < ActiveRecord::Base
     end
 
     return user
-
-    fail
   end
 
 
   def self.find_by_credentials(username, password)
-    user = User.find_by_username(username)
+    user = (User.find_by_username(username) || User.find_by_email(username))
     user.try(:is_password?, password) ? user : nil
   end
 
