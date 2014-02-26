@@ -1,9 +1,14 @@
-<p>
-  <a href="/auth/facebook"><img src="http://i.imgur.com/OqNU4KT.png"></a>
-</p>
+<div class="left group">
+  <div class="social">
+    <h1>Use social!</h1>
+    <a id="facebook" href="/auth/facebook"><img src="http://i.imgur.com/UIbkQV6.png"></a>
 
-<p>
-  <a href="/auth/twitter"><img src="http://i.imgur.com/YkVRktQ.png"></a>
-</p>
+    <p>or</p>
 
-<%= render "form", :user => @user %>
+    <a id="twitter" href="/auth/twitter"><img src="http://i.imgur.com/JzFd7Qi.png"></a>
+  </div>
+</div>
+
+<div class="right group">
+  <%= render "form", :user => @user %>
+</div>

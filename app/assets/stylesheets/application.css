@@ -48,6 +48,57 @@ html, body, form, h1, div, label, ul {
 }
 
 /*
+  SIGN-IN PAGE
+*/
+
+.left {
+  width: 45%;
+  float: left;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.left .social {
+  margin: 0;
+  padding: 50px 0 0 70px;
+}
+
+.left #facebook {
+
+}
+
+.left #facebook img {
+  display: block;
+  margin: 0 auto;
+}
+
+.left #twitter {
+
+}
+
+.left #twitter img{
+  display: block;
+  margin: 0 auto;
+}
+
+.right {
+  width: 49%;
+  float: right;
+  padding: 0 25px 0 0;
+}
+
+.social h1 {
+  font-weight: bold;
+  font-size: 60px;
+  margin: 0 0 30px 0;
+}
+
+.social p {
+  margin: 15px 0;
+}
+
+/*
   NAV BAR
 */
 
