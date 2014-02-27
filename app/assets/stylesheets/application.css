@@ -465,7 +465,7 @@ textarea:focus {
 
 .modal-box {
   position: absolute;
-  top: 50%;
+  top: 100px;
   left: 50%;
 
   width: 475px;

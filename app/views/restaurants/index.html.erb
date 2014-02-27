@@ -55,20 +55,11 @@
 
 <script src="http://js.pusher.com/2.1/pusher.min.js"></script>
 <script>
-
-  // Enable pusher logging - don't include this in production
-  Pusher.log = function(message) {
-    console.log(message);
-  };
-
   var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>');
 
   var channel = pusher.subscribe('reviews');
 
   channel.bind('new-review', function(data) {
-    console.log(data);
-
     $(".recent-reviews").prepend(data);
   });
-
 </script>

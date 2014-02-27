@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
     push_review(@review)
 
     if request.xhr?
+      headers["Content-Type"] = 'text/html; charset=utf-8'
       render partial: "jsform", locals: {review: @review}
     else
       redirect_to restaurant_url(@review.restaurant)
