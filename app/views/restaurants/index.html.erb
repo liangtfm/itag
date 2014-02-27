@@ -45,7 +45,7 @@
   <h2>Recent Reviews</h2>
   <div class="recent-reviews group">
     <% Review.last(5).sort_by{|r| r.created_at}.reverse!.each do |review| %>
-     <%= render partial: "reviews/jsform", locals: {review: review} %>
+     <%= render partial: "reviews/pusherform", locals: {review: review} %>
     <% end %>
   </div>
 

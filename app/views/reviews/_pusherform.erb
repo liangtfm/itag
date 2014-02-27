@@ -1,0 +1,13 @@
+<div class="review">
+  <h3><%=link_to review.restaurant.name, restaurant_url(review.restaurant) %></h3>
+  <strong>"<%= review.title %>"</strong> by <%= link_to review.user.username, user_url(review.user) %>
+  <div class="review-date"> <%="(written #{time_ago_in_words(review.created_at)} ago)"%></div>
+
+  <br>
+  Rating: <%= review.rating %>
+  <br>
+  <div class="review-body">
+  <%= review.body %>
+  </div>
+
+</div>
