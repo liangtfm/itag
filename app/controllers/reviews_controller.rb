@@ -10,8 +10,9 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = current_user.reviews.new(params[:review])
-    @review.restaurant_id = params[:restaurant_id]
+    @review.restaurant_id = @restaurant.id
     @review.save
 
     push_review(@review)

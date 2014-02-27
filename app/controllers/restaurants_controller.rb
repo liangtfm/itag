@@ -44,6 +44,15 @@ class RestaurantsController < ApplicationController
                         .order("avg_rating DESC NULLS LAST")
                         .page(params[:page])
                         .per(5)
+
+    @reviews = Review.select("reviews.*")
+                     .joins("JOIN restaurants ON reviews.restaurant_id = restaurants.id")
+                     .joins("JOIN cities ON cities.id = restaurants.city_id")
+                     .where("cities.id = ?", @city.id)
+                     .group("reviews.id")
+                     .order("reviews.created_at")
+                     .last(5)
+                     .reverse!
   end
 
   def destroy

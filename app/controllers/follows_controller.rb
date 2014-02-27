@@ -1,8 +1,9 @@
 class FollowsController < ApplicationController
 
   def create
+    @user = User.find(params[:user_id])
     @follow = current_user.followed.new
-    @follow.followed_id = params[:user_id]
+    @follow.followed_id = @user.id
 
     if @follow.save
       redirect_to user_url(@follow.followed)
@@ -12,7 +13,8 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    @follow = current_user.followed.where("followed_id = ?", params[:user_id])
+    @user = User.find(params[:user_id])
+    @follow = current_user.followed.where("followed_id = ?", @user.id)
     @follow.first.destroy
     redirect_to user_url(@follow.first.followed)
   end
