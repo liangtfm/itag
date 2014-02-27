@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
     if user
       sign_in(user)
-      redirect_to cities_url
+      redirect_to "/"
     else
       render :json => "Credentials were wrong"
     end
