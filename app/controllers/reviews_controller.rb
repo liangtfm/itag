@@ -14,6 +14,8 @@ class ReviewsController < ApplicationController
     @review.restaurant_id = params[:restaurant_id]
     @review.save
 
+    push_review(@review)
+
     if request.xhr?
       render partial: "jsform", locals: {review: @review}
     else

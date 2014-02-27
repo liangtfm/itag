@@ -50,23 +50,23 @@ Restaurant.create([
     open: true,
     category_ids: [10]
   },
-  {name: "Donguri Restaurant",
-    website: "",
-    price: "$$$",
-    phone: "(212) 737-5656",
-    street: "309 E 83rd St",
+  {name: "Totto Ramen",
+    website: "http://tottoramen.com",
+    price: "$$",
+    phone: "(212) 582-0052",
+    street: "366 W 52nd St",
     city_id: 1,
     zip: "10028",
     open: true,
     category_ids: [10]
   },
-  {name: "Sushi Yasaka",
-    website: "",
-    price: "$$$",
-    phone: "",
-    street: "309 E 83rd St",
+  {name: "Minca",
+    website: "http://newyorkramen.com",
+    price: "$$",
+    phone: "(212) 505-8001",
+    street: "536 E 5th St",
     city_id: 1,
-    zip: "",
+    zip: "10009",
     open: true,
     category_ids: [10]
   },
@@ -80,11 +80,11 @@ Restaurant.create([
     open: true,
     category_ids: [10]
   },
-  {name: "MEW Izakaya",
+  {name: "Village Yokocho",
     website: "",
-    price: "$$$",
+    price: "$$",
     phone: "",
-    street: "309 E 83rd St",
+    street: "8 Stuyvesant St",
     city_id: 1,
     zip: "",
     open: true,
@@ -140,11 +140,11 @@ Restaurant.create([
     open: true,
     category_ids: [10]
   },
-  {name: "Zenkichi",
+  {name: "Sushi Nakazawa",
     website: "",
-    price: "$$$",
+    price: "$$$$",
     phone: "(212) 737-5656",
-    street: "77 N 6th St",
+    street: "23 Commerce St",
     city_id: 1,
     zip: "",
     open: true,
@@ -156,8 +156,8 @@ User.create({username: 'ant', password: '123123', email: 'liangtfm@gmail.com', b
 
 
 100.times do
-
-  Restaurant.create({name: Faker::Company.name,
+  Restaurant.create({
+    name: Faker::Company.name,
     website: "http://"+Faker::Internet.domain_name,
     price: ["$","$$","$$$","$$$$"].sample,
     phone: Faker::PhoneNumber.phone_number,
@@ -167,5 +167,27 @@ User.create({username: 'ant', password: '123123', email: 'liangtfm@gmail.com', b
     open: true,
     category_ids: rand(1..16)
   })
+end
 
+50.times do
+  User.create({
+    username: Faker::Internet.user_name + rand(1..1000).to_s,
+    password: '123123',
+    email: Faker::Internet.user_name + rand(1..1000).to_s + Faker::Internet.email,
+    biography: Faker::Lorem.paragraph,
+    age: rand(18..50),
+    gender: ["M","F"].sample,
+    location: ["NYC", "NY", "SF", "Boston", "San Francisco", "Manchester, NH", "ManchVegas", "New York"].sample
+  })
+end
+
+
+1000.times do
+  Review.create({
+    title: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraphs.join(" "),
+    rating: rand(1..5),
+    user_id: rand(2..51),
+    restaurant_id: rand(1..111)
+  })
 end

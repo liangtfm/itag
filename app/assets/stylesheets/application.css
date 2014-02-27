@@ -469,9 +469,9 @@ textarea:focus {
   left: 50%;
 
   width: 475px;
-  min-height: 200px;
+  min-height: 100px;
 
-  margin-top: -200px;
+  margin-top: -100px;
   margin-left: -237px;
 
   background: #fff;

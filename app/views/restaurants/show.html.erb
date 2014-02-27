@@ -76,6 +76,49 @@ $(document).ready(function(){
 
 </script>
 
+<section class="modal">
+  <article class="modal-box">
+    <span class="modal-close-button">&times;</span>
+    <div id="modal-container">
+
+      <form class="form" action="<%= restaurant_reviews_url(@restaurant) %>" method="post" data-remote="true" id="jsform">
+        <input
+           name="authenticity_token"
+           type="hidden"
+           value="<%= form_authenticity_token %>">
+
+       <h1>New Review!</h1>
+
+       <div class="input">
+        <label for="review_rating">Rating</label>
+        <select id="review_rating" name="review[rating]">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+       </div>
+
+       <div class="input">
+        <label for="review_email">Review Title</label>
+        <input id="review_title" name="review[title]" type="text" value="">
+        <br>
+      </div>
+
+      <div class="input">
+        <label for="review_body">Review Body</label><br>
+      <textarea id="review_body" name="review[body]"></textarea>
+      </div>
+
+       <div class="submit">
+        <input id="submit" type="submit" value="Create review!">
+       </div>
+      </form>
+
+    </div>
+  </article>
+</section>
 
 <div class="rest-content group">
 
@@ -164,47 +207,3 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
-
-<section class="modal">
-  <article class="modal-box">
-    <span class="modal-close-button">&times;</span>
-    <div id="modal-container">
-
-      <form class="form" action="<%= restaurant_reviews_url(@restaurant) %>" method="post" data-remote="true" id="jsform">
-        <input
-           name="authenticity_token"
-           type="hidden"
-           value="<%= form_authenticity_token %>">
-
-       <h1>New Review!</h1>
-
-       <div class="input">
-        <label for="review_rating">Rating</label>
-        <select id="review_rating" name="review[rating]">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-       </div>
-
-       <div class="input">
-        <label for="review_email">Review Title</label>
-        <input id="review_title" name="review[title]" type="text" value="">
-        <br>
-      </div>
-
-      <div class="input">
-        <label for="review_body">Review Body</label><br>
-      <textarea id="review_body" name="review[body]"></textarea>
-      </div>
-
-       <div class="submit">
-        <input id="submit" type="submit" value="Create review!">
-       </div>
-      </form>
-
-    </div>
-  </article>
-</section>

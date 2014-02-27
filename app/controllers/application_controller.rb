@@ -32,4 +32,10 @@ class ApplicationController < ActionController::Base
    def require_signed_out!
      redirect_to user_url(current_user) if signed_in?
    end
+
+   def push_review(review)
+     html = render_to_string(partial: "reviews/jsform", locals: {review: review})
+     Pusher.trigger("reviews", "new-review", html)
+   end
+
 end

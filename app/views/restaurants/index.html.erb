@@ -40,4 +40,35 @@
 
   <%= paginate @restaurants %>
 
+  <hr>
+
+  <h2>Recent Reviews</h2>
+  <div class="recent-reviews group">
+    <% Review.last(5).sort_by{|r| r.created_at}.reverse!.each do |review| %>
+     <%= render partial: "reviews/jsform", locals: {review: review} %>
+    <% end %>
+  </div>
+
 </div>
+
+
+
+<script src="http://js.pusher.com/2.1/pusher.min.js"></script>
+<script>
+
+  // Enable pusher logging - don't include this in production
+  Pusher.log = function(message) {
+    console.log(message);
+  };
+
+  var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>');
+
+  var channel = pusher.subscribe('reviews');
+
+  channel.bind('new-review', function(data) {
+    console.log(data);
+
+    $(".recent-reviews").prepend(data);
+  });
+
+</script>
