@@ -43,7 +43,7 @@
   <hr>
 
   <h2>Recent Reviews</h2>
-  <div class="recent-reviews group">
+  <div class="recent-reviews-<%= @city.id %> group">
     <% @reviews.each do |review| %>
      <%= render partial: "reviews/pusherform", locals: {review: review} %>
     <% end %>
@@ -58,6 +58,8 @@
   var channel = pusher.subscribe('reviews');
 
   channel.bind('new-review', function(data) {
-    $(".recent-reviews").prepend(data);
+    var city = $('.review').attr('data-id');
+    console.log(".recent-reviews-"+city);
+    $(".recent-reviews-"+city).prepend(data);
   });
 </script>

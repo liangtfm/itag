@@ -32,18 +32,10 @@ $(document).ready(function(){
   });
 
   $("#jsform").on("ajax:send", function(event){
-    console.log("Sent!");
-
     $("#submit").attr('disabled', 'true');
   });
 
-  $("#jsform").on("ajax:complete", function(event){
-    console.log("Request complete!");
-  });
-
   $("#jsform").on("ajax:success", function(event, data){
-    console.log("Success!");
-
     window.modal.hide();
     $(".reviews").prepend(data);
     $(".show-modal").remove();
