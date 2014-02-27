@@ -26,6 +26,8 @@ gem 'pusher'
 
 gem 'newrelic_rpm'
 
+gem 'friendly_id'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

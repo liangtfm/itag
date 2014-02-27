@@ -1,4 +1,7 @@
 class Restaurant < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+
   attr_accessible :name, :website, :price, :phone, :street, :city_id, :zip, :open, :category_ids, :photo
 
   validates :name, :street, :city_id, presence: true

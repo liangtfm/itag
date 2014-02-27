@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140226153258) do
+ActiveRecord::Schema.define(:version => 20140227212604) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(:version => 20140226153258) do
     t.integer  "state_id",   :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
 
+  add_index "cities", ["slug"], :name => "index_cities_on_slug", :unique => true
   add_index "cities", ["state_id"], :name => "index_cities_on_state_id"
 
   create_table "favorites", :force => true do |t|
@@ -71,9 +73,11 @@ ActiveRecord::Schema.define(:version => 20140226153258) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "slug"
   end
 
   add_index "restaurants", ["city_id"], :name => "index_restaurants_on_city_id"
+  add_index "restaurants", ["slug"], :name => "index_restaurants_on_slug", :unique => true
 
   create_table "reviews", :force => true do |t|
     t.string   "title",         :null => false
@@ -123,10 +127,12 @@ ActiveRecord::Schema.define(:version => 20140226153258) do
     t.string   "provider"
     t.string   "uid"
     t.string   "image"
+    t.string   "slug"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["provider"], :name => "index_users_on_provider"
+  add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
   add_index "users", ["uid"], :name => "index_users_on_uid"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
