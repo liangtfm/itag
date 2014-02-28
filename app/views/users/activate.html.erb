@@ -1,0 +1,9 @@
+<% user = User.find(params[:user_id]) %>
+<h1>
+<% if user.auth_token = params[:auth_token] %>
+<% current_user.activate! %>
+<%= "Account activated!" %>
+<% else %>
+<%= "Check your email again" %>
+<% end %>
+</h1>

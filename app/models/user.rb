@@ -2,10 +2,11 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, :use => :slugged
 
-  attr_accessible :username, :password, :email, :biography, :age, :gender, :location, :admin, :session_token, :photo, :uid, :provider, :image
+  attr_accessible :username, :password, :email, :biography, :age, :gender, :location, :admin, :session_token, :photo, :uid, :provider, :image, :auth_token, :activated
   attr_reader :password
 
   before_validation :ensure_session_token
+  before_validation(:ensure_auth_token, on: :create)
 
   validates :username, :email, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, :allow_nil => true }
@@ -116,10 +117,19 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
+  def activate!
+    self.activated = true
+    self.save
+  end
+
   private
 
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
+  end
+
+  def ensure_auth_token
+    self.auth_token ||= self.class.generate_session_token
   end
 
 end

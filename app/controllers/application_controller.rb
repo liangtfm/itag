@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
      redirect_to user_url(current_user) if signed_in?
    end
 
+   def require_auth!
+     redirect_to new_session_url unless current_user.activated == true
+   end
+
    def push_review(review)
      html = render_to_string(partial: "reviews/pusherform", locals: {review: review})
      Pusher.trigger("reviews", "new-review", html)

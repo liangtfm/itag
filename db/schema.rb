@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140227212604) do
+ActiveRecord::Schema.define(:version => 20140228195246) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -128,10 +128,14 @@ ActiveRecord::Schema.define(:version => 20140227212604) do
     t.string   "uid"
     t.string   "image"
     t.string   "slug"
+    t.boolean  "activated",          :default => false
+    t.string   "auth_token"
   end
 
+  add_index "users", ["auth_token"], :name => "index_users_on_auth_token"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["provider"], :name => "index_users_on_provider"
+  add_index "users", ["session_token"], :name => "index_users_on_session_token"
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
   add_index "users", ["uid"], :name => "index_users_on_uid"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
