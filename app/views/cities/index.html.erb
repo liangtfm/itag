@@ -1,15 +1,14 @@
 <div class="content group">
 
-  <h1>Pick a city to browse!</h1>
+  <h1 id="city-index">Pick a city to browse!</h1>
 
-  <ul>
-  <% @cities.each do |city| %>
+  <div class="cities group">
+    <ul>
+    <% @cities.each do |city| %>
 
-  <li><a href="<%= city_restaurants_url(city) %>"><%= city.name %>, <%= city.state.name %></a></li>
+    <li class="city-tile" id="<%= city.state.name %>"><a href="<%= city_restaurants_url(city) %>"><label class="special-text"><%= city.name %>, <%= city.state.name %></label></a></li>
 
-  <% end %>
-  </ul>
-
-  <p>COMING SOON: Add your city</p>
-
+    <% end %>
+    </ul>
+  </div>
 </div>

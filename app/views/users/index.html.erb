@@ -1,8 +1,27 @@
-<ul>
-<% @users.each do |user| %>
+<div class="content group">
 
-  <li><%= link_to user.username, user_url(user) %></li>
+  <h2>Yay, new friends!</h2>
 
-<% end %>
-</ul>
-<% paginate @users %>
+  <ol class="group">
+  <% @users.each do |user| %>
+
+  <a href="<%= user_url(user) %>">
+    <% if user.photo.file? %>
+      <%= image_tag user.photo.url(:small) %>
+    <% else %>
+      <%= image_tag "http://i.imgur.com/xqtsqlj.png", size: "60x60" %>
+    <% end %>
+  </a>
+
+    <li class="results">
+      <a href="<%= user_url(user) %>">
+        <%= user.username %>
+      </a>
+    </li>
+
+  <% end %>
+  </ol>
+
+  <%= paginate @users %>
+
+</div>
