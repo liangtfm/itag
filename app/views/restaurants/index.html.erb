@@ -59,9 +59,8 @@
 
   channel.bind('new-review', function(data) {
     var city = $(data).attr('data-id');
-    console.log(".recent-reviews-"+city);
-    console.log(data);
-    $(".recent-reviews-"+city).prepend(data);
+ $(data).hide().prependTo(".recent-reviews-"+city).slideDown("slow");
+
     $(".recent-"+city).last().remove();
   });
 </script>
