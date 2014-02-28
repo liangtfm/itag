@@ -152,7 +152,7 @@ Restaurant.create([
   },
 ])
 
-User.create({username: 'ant', password: '123123', email: 'liangtfm@gmail.com', biography: "Hello!", age: 26, gender: "M", location: "NYC", admin: true})
+User.create({username: 'ant', password: '123123', email: 'liangtfm@gmail.com', biography: "Hello!", age: 26, gender: "M", location: "NYC", admin: true}, {username: 'guest', password: '123123', email: 'guest@example.com', biography: "Hello, I'm a guest!"})
 
 
 100.times do
@@ -169,7 +169,7 @@ User.create({username: 'ant', password: '123123', email: 'liangtfm@gmail.com', b
   })
 end
 
-50.times do
+100.times do
   User.create({
     username: Faker::Internet.user_name + rand(1..1000).to_s,
     password: '123123',
@@ -182,7 +182,7 @@ end
 end
 
 
-1000.times do
+10000.times do
   Review.create({
     title: Faker::Lorem.sentence,
     body: Faker::Lorem.paragraphs.join(" "),

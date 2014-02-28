@@ -33,6 +33,18 @@
   <div class="submit">
     <input class type="submit" value="Log in">
   </div>
+
+  <button class="submit" id="guest">Sign in as guest</button>
 </form>
 
 </div>
+
+<script>
+
+  $("#guest").on("click", function(event){
+    document.getElementById('user_username').value="guest"
+    document.getElementById('user_password').value="123123"
+    document.forms[0].submit()
+  });
+
+</script>
