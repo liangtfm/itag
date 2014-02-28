@@ -593,12 +593,14 @@ main {
 }
 
 .prof-left {
-  width: 25%;
+  display: block;
+  width: 20%;
   float: left;
+  padding: 0 0 0 35px;
 }
 
 .prof-mid {
-  width: 45%;
+  width: 50%;
   float: left;
   border-left: 1px solid #E5E5E1;
   border-right: 1px solid #E5E5E1;
