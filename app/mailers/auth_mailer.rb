@@ -4,7 +4,7 @@ class AuthMailer < ActionMailer::Base
   def signup_email(user)
     @user = user
     @token = @user.auth_token
-    @url = "http://localhost:3000/users/#{@user.id}/activate?auth_token=#{@token}"
+    @url = "http://isthatanygood.com/users/#{@user.id}/activate?auth_token=#{@token}"
 
     mail(
       :to => user.email,
