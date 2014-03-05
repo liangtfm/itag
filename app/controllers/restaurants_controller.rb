@@ -32,7 +32,8 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.includes(:reviews, :categories, :city, :state, :users_who_favorited).find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
+    # Restaurant.includes(:reviews, :categories, :city, :state, :users_who_favorited).find(params[:id])
   end
 
   def index

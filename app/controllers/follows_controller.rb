@@ -4,11 +4,13 @@ class FollowsController < ApplicationController
     @user = User.find(params[:user_id])
     @follow = current_user.followed.new
     @follow.followed_id = @user.id
+    @follow.save
 
-    if @follow.save
-      redirect_to user_url(@follow.followed)
+    if request.xhr?
+      headers["Content-Type"] = 'text/html; charset=utf-8'
+      render "users/show"
     else
-      render json: @follow.errors.full_messages
+      redirect_to user_url(@follow.followed)
     end
   end
 
@@ -16,7 +18,13 @@ class FollowsController < ApplicationController
     @user = User.find(params[:user_id])
     @follow = current_user.followed.where("followed_id = ?", @user.id)
     @follow.first.destroy
-    redirect_to user_url(@follow.first.followed)
+
+    if request.xhr?
+      headers["Content-Type"] = 'text/html; charset=utf-8'
+      render "users/show"
+    else
+      redirect_to user_url(@follow.first.followed)
+    end
   end
 
 end

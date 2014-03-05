@@ -23,9 +23,11 @@ class Restaurant < ActiveRecord::Base
 
   has_many :categories,
   through: :tags,
-  source: :category
+  source: :category,
+  dependent: :destroy
 
-  has_many :reviews
+  has_many :reviews,
+  dependent: :destroy
 
   has_many :reviewers,
   through: :reviews,
@@ -36,7 +38,8 @@ class Restaurant < ActiveRecord::Base
   has_one :state,
   through: :city
 
-  has_many :favorites
+  has_many :favorites,
+  dependent: :destroy
 
   has_many :users_who_favorited,
   through: :favorites,

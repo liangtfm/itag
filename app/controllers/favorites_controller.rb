@@ -4,11 +4,13 @@ class FavoritesController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @favorite = current_user.favorites.new
     @favorite.restaurant_id = @restaurant.id
+    @favorite.save
 
-    if @favorite.save
-      redirect_to restaurant_url(@favorite.restaurant)
+    if request.xhr?
+      headers["Content-Type"] = 'text/html; charset=utf-8'
+      render "restaurants/show"
     else
-      render json: @favorite.errors.full_messages
+      redirect_to restaurant_url(@favorite.restaurant)
     end
   end
 
@@ -16,7 +18,13 @@ class FavoritesController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @favorite = current_user.favorites.where("restaurant_id = ?", @restaurant.id)
     @favorite.first.destroy
-    redirect_to restaurant_url(@favorite.first.restaurant)
+
+    if request.xhr?
+      headers["Content-Type"] = 'text/html; charset=utf-8'
+      render "restaurants/show"
+    else
+      redirect_to restaurant_url(@favorite.first.restaurant)
+    end
   end
 
 end

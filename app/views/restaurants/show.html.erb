@@ -66,11 +66,10 @@
     <% end %>
     <br>
 
-  <% if current_user.favorite_places.include?(@restaurant) %>
-    <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete, form_class: "favorite-button grad_button" %>
-  <% else %>
-    <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post, form_class: "favorite-button grad_button" %>
-  <% end %>
+    <div class="favs <%="is-favorite" if current_user.favorite_places.include?(@restaurant) %>">
+      <%= button_to "FAVORITE", restaurant_favorites_url(@restaurant), method: :post, form_class: "favorite-button grad_button", remote: true %>
+      <%= button_to "UNFAVORITE", restaurant_favorite_url(@restaurant), method: :delete, form_class: "unfavorite-button grad_button", remote: true %>
+    </div>
 
   <br>
 
@@ -208,4 +207,12 @@ $(document).ready(function(){
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
+  // FAVORITES
+  $('.favorite-button').on('ajax:send', function(event){
+    $('.favs').toggleClass('is-favorite');
+  });
+
+  $('.unfavorite-button').on('ajax:send', function(event){
+    $('.favs').toggleClass('is-favorite');
+  });
 </script>

@@ -21,11 +21,10 @@
     <% end %>
 
     <% unless current_user == @user %>
-      <% if current_user.followed_users.include?(@user) %>
-        <%= button_to "UNFOLLOW", user_follow_url(@user), method: :delete, form_class: "follow-button grad_button" %>
-      <% else %>
-        <%= button_to "FOLLOW", user_follows_url(@user), method: :post, form_class: "follow-button grad_button" %>
-      <% end %>
+      <div class="foll <%="is-followed" if current_user.followed_users.include?(@user) %>">
+        <%= button_to "FOLLOW", user_follows_url(@user), method: :post, form_class: "follow-button grad_button", remote: true %>
+        <%= button_to "UNFOLLOW", user_follow_url(@user), method: :delete, form_class: "unfollow-button grad_button", remote: true %>
+      </div>
     <% end %>
 
     <ul>
@@ -51,3 +50,14 @@
     <%= render "follows/user", :user => @user %>
   </div>
 </div>
+
+<script>
+  // FOLLOWS
+  $('.follow-button').on('ajax:send', function(event){
+    $('.foll').toggleClass('is-followed');
+  });
+
+  $('.unfollow-button').on('ajax:send', function(event){
+    $('.foll').toggleClass('is-followed');
+  });
+</script>
