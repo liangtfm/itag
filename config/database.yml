@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: itag_development
   pool: 5
-  username: appacademy
+  username: LiangTFM
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -43,7 +43,7 @@ test:
   encoding: unicode
   database: itag_test
   pool: 5
-  username: appacademy
+  username: LiangTFM
   password:
 
 production:
@@ -51,5 +51,5 @@ production:
   encoding: unicode
   database: itag_production
   pool: 5
-  username: appacademy
+  username: LiangTFM
   password:
